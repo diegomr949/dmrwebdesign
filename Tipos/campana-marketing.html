@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing para Campañas de Marketing | DMR Web Design</title>
+  <meta name="description" content="Diseño landing para campañas: Hot Sale, lanzamientos, concursos. Máxima conversión." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    @media (max-width: 768px) {
+      [data-responsive="tipo-grid"] { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body data-page="tipo">
+  <nav class="navbar" id="navbar">
+    <a href="../index.html" class="nav-logo"><span class="nav-logo-mark">D</span>DMR Web Design</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../tipos.html" class="active">Tipos de Landing</a></li>
+      <li><a href="../mantenimiento.html">Mantenimiento PC</a></li>
+      <li><a href="../contacto.html">Contacto</a></li>
+    </ul>
+    <a href="../contacto.html" class="nav-cta">Pedir presupuesto →</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </nav>
+  <nav class="nav-mobile" id="mobile-nav">
+    <a href="../index.html">Inicio</a>
+    <a href="../tipos.html" class="active">Tipos de Landing</a>
+    <a href="../mantenimiento.html">Mantenimiento PC</a>
+    <a href="../contacto.html">Contacto</a>
+    <a href="../contacto.html" class="nav-cta-mobile">Pedir presupuesto →</a>
+  </nav>
+
+  <div class="subhero">
+    <div class="subhero-bg"></div>
+    <div class="subhero-content">
+      <span class="section-label">Tipo de landing</span>
+      <h1>Landing para Campañas de Marketing</h1>
+      <p>Para lanzamientos, ofertas por tiempo limitado, concursos o sorteos con máxima conversión.</p>
+      <a href="../contacto.html?tipo=campana" class="btn btn--primary">Solicitar presupuesto →</a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:2.5rem;align-items:start;" data-responsive="tipo-grid" class="reveal">
+        <div class="structure-card">
+          <h2 class="section-title" style="font-size:1.4rem;margin-bottom:1.5rem;">Estructura recomendada</h2>
+          <ol><li class="highlighted">Hero con titular urgente y CTA ("¡Comprar Ahora!", "Participar Ya").</li><li class="">Descripción breve y directa de la oferta.</li><li class="">Beneficios clave o reglas del concurso.</li><li class="">Contador regresivo (si es por tiempo limitado).</li><li class="">Prueba social (logos, testimonios breves).</li><li class="">Formulario o botón de acción final MUY visible.</li></ol>
+        </div>
+        <div class="tipo-sidebar">
+          <div class="sidebar-card">
+            <h3>Extras recomendados</h3>
+            <ul><li>Diseño visual llamativo y alineado a la campaña.</li><li>Video corto promocional.</li><li>Pop-up de salida con oferta final.</li></ul>
+          </div>
+          <div class="sidebar-card">
+            <h3>Ejemplo de copy</h3>
+            <p class="copy-example">"¡Hot Sale! 50% OFF en [Producto] solo por 24hs. No te lo pierdas. Comprá ahora."</p>
+          </div>
+          <a href="../contacto.html?tipo=campana" class="btn btn--primary" style="text-align:center;justify-content:center;">Quiero esta landing →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;position:relative;overflow:hidden;">
+    <div class="cta-glow"></div>
+    <div style="position:relative;z-index:1;max-width:520px;margin:0 auto;" class="reveal">
+      <h2 class="section-title" style="margin-bottom:.75rem;">¿Tenés una campaña y necesitás una landing urgente?</h2>
+      <p class="section-sub" style="margin:0 auto 2rem;">Completá el formulario y te armo una propuesta en menos de 24 horas.</p>
+      <a href="../contacto.html?tipo=campana" class="btn btn--primary btn--lg">Solicitar presupuesto →</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2025 Diego Moreno Rico. Hecho con ♥ en Mendoza, Argentina.</p>
+      <nav class="footer-links">
+        <a href="../index.html">Inicio</a>
+        <a href="../tipos.html">Servicios</a>
+        <a href="../contacto.html">Contacto</a>
+        <a href="https://diegomr949.github.io/Portfolio-Moreno-Rico-Diego/" target="_blank" rel="noopener">Portfolio</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>
