@@ -39,7 +39,7 @@
 </div>
 
 <!-- ── HERO ── -->
-<section class="hero">
+<section class="page-hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="page-hero-content">
@@ -48,7 +48,7 @@
       Mendoza Capital · A domicilio y en taller
     </div>
     <h1>Servicio técnico<br/><em>PC y notebooks</em></h1>
-    <p>Software, hardware, formateo, virus, limpieza, armado. Precios de referencia de mercado actualizados a abril 2026.</p>
+    <p>Formateo, virus, programas, backup, drivers y armado de PC. Precios de referencia actualizados a abril 2026.</p>
     <div class="hero-pills">
       <span class="hero-pill">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -60,7 +60,7 @@
       </span>
       <span class="hero-pill">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Notebooks & Consolas
+        Armado de PC
       </span>
       <span class="hero-pill">
         <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -118,7 +118,7 @@
     <div class="reveal" style="margin-bottom: 2rem;">
       <p class="section-label">Lista de precios</p>
       <h2 class="section-title">Precios orientativos<br/>actualizados abril 2026</h2>
-      <p class="section-sub">Referencia de mercado para Mendoza Capital. Los precios finales pueden variar según el diagnóstico.</p>
+      <p class="section-sub">Referencia de mercado para Mendoza Capital. Software, hardware y soporte. Precio final según diagnóstico.</p>
     </div>
 
     <div class="note-card reveal">
@@ -136,17 +136,16 @@
         
         <input type="text" class="search-input" id="search" placeholder="Buscar servicio..." />
       </div>
-      <p class="results-info"><span id="count">29</span> servicios</p>
+      <p class="results-info"><span id="count">21</span> servicios</p>
     </div>
     
     <div class="tabs-bar" id="tabs" role="tablist">
       
-      <button class="tab-btn active" data-tab="all">Todos <span class="tab-count" id="cnt-all">29</span></button>
+      <button class="tab-btn active" data-tab="all" onclick="setTab(this)">Todos <span class="tab-count" id="cnt-all">23</span></button>
       <button class="tab-btn" data-tab="software">💾 Software <span class="tab-count" id="cnt-software">11</span></button>
-      <button class="tab-btn" data-tab="hardware">🔩 Hardware <span class="tab-count" id="cnt-hardware">8</span></button>
-      <button class="tab-btn" data-tab="notebook">💻 Notebook <span class="tab-count" id="cnt-notebook">4</span></button>
-      <button class="tab-btn" data-tab="domicilio">🏠 Domicilio <span class="tab-count" id="cnt-domicilio">3</span></button>
-      <button class="tab-btn" data-tab="otros">📱 Otros <span class="tab-count" id="cnt-otros">3</span></button>
+      <button class="tab-btn" data-tab="hardware">🔩 Hardware <span class="tab-count" id="cnt-hardware">6</span></button>
+            <button class="tab-btn" data-tab="domicilio">🏠 Domicilio <span class="tab-count" id="cnt-domicilio">3</span></button>
+      <button class="tab-btn" data-tab="otros">📱 Otros <span class="tab-count" id="cnt-otros">1</span></button>
     </div>
   </div>
 </div>
@@ -320,28 +319,6 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica pc">
-        <div class="service-info">
-          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
-          <div class="service-devices"><span class="device-tag">PC</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$38.600</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica notebook consola playstation xbox">
-        <div class="service-info">
-          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$53.500</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
       <div class="service-category-header" data-cat="hardware" data-keywords="clonado disco sin errores smart migrar">
         <div class="service-info">
           <div class="service-name">Clonado de disco sin errores SMART</div>
@@ -375,66 +352,7 @@
         </div>
       </div>
 
-      <!-- ─ NOTEBOOK ─ -->
-      <div class="service-category-header" data-cat="notebook">
-        <div class="service-category-icon" style="background:rgba(245,158,11,0.1);">💻</div>
-        <span class="service-category-title" style="color:var(--amber);">Reparaciones Notebook</span>
-      </div>
 
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio flex notebook pantalla cable">
-        <div class="service-info">
-          <div class="service-name">Cambio de Flex</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$48.600</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pantalla display notebook rota">
-        <div class="service-info">
-          <div class="service-name">Cambio de pantalla</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$43.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio teclado keyboard notebook">
-        <div class="service-info">
-          <div class="service-name">Cambio de teclado</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$29.000</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="despiece componentes internos notebook consola">
-        <div class="service-info">
-          <div class="service-name">Despiece + cambio de componentes internos</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$60.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pin carga cargador puerto notebook">
-        <div class="service-info">
-          <div class="service-name">Cambio de pin de carga</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$77.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
 
       <!-- ─ DOMICILIO ─ -->
       <div class="service-category-header" data-cat="domicilio">
