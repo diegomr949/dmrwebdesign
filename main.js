@@ -26,7 +26,7 @@ const CONFIG = {
   FORMSPREE_ID:   'xqegbdbe', // ← SOLO EL ID, SIN LA URL
   PRICES: {
     usd: { basico: '$199 <span>USD</span>', pro: '$349 <span>USD</span>', premium: '$549 <span>USD</span>' },
-    ars: { basico: '$199k <span>ARS</span>', pro: '$349k <span>ARS</span>', premium: '$549k <span>ARS</span>' },
+    ars: { basico: '$150.000 <span>ARS</span>', pro: '$300.000 <span>ARS</span>', premium: '$500.000 <span>ARS</span>' },
   },
 };
 
