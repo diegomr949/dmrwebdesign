@@ -116,6 +116,7 @@
 <!-- ── PRECIOS ── -->
 <section class="section" style="background: var(--bg2); padding-top: 3rem;">
   <div class="container">
+    
     <div class="reveal" style="margin-bottom: 2rem;">
       <p class="section-label">Lista de precios</p>
       <h2 class="section-title">Precios orientativos<br/>actualizados abril 2026</h2>
@@ -126,32 +127,28 @@
       <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Estos precios son valores de <strong>referencia de mercado</strong> (Mendoza Capital, abril 2026). El precio final se confirma después del diagnóstico. Siempre se informa antes de realizar cualquier trabajo.</span>
     </div>
-  </div>
 
-  <!-- TABS -->
-<div class="tabs-wrap reveal">
-  <div class="tabs-container">
-    <div class="search-row">
+    <!-- TABS Y BUSCADOR UNIFICADOS -->
+    <div class="services-filter-bar reveal">
+      
       <div class="search-wrap">
         <svg class="search-icon" width="15" height="15" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        
         <input type="text" class="search-input" id="search" placeholder="Buscar servicio..." />
       </div>
-      <p class="results-info"><span id="count">21</span> servicios</p>
-    </div>
-    
-    <div class="tabs-bar" id="tabs" role="tablist">
-      
-      <button class="tab-btn active" data-tab="all" onclick="setTab(this)">Todos <span class="tab-count" id="cnt-all">23</span></button>
-      <button class="tab-btn" data-tab="software">💾 Software <span class="tab-count" id="cnt-software">11</span></button>
-      <button class="tab-btn" data-tab="hardware">🔩 Hardware <span class="tab-count" id="cnt-hardware">6</span></button>
-            <button class="tab-btn" data-tab="domicilio">🏠 Domicilio <span class="tab-count" id="cnt-domicilio">3</span></button>
-      <button class="tab-btn" data-tab="otros">📱 Otros <span class="tab-count" id="cnt-otros">1</span></button>
-    </div>
-  </div>
-</div>
 
-  <div class="container">
+      <div class="tabs-bar" id="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="all" onclick="setTab(this)">Todos <span class="tab-count" id="cnt-all">23</span></button>
+        <button class="tab-btn" data-tab="software">💾 Software <span class="tab-count" id="cnt-software">11</span></button>
+        <button class="tab-btn" data-tab="hardware">🔩 Hardware <span class="tab-count" id="cnt-hardware">6</span></button>
+        <button class="tab-btn" data-tab="domicilio">🏠 Domicilio <span class="tab-count" id="cnt-domicilio">3</span></button>
+        <button class="tab-btn" data-tab="otros">📱 Otros <span class="tab-count" id="cnt-otros">1</span></button>
+      </div>
+
+      <p class="results-info"><span id="count">21</span> servicios</p>
+
+    </div>
+
+    <!-- GRILLA DE SERVICIOS -->
     <div class="services-grid" id="services-grid">
 
       <!-- ─ SOFTWARE ─ -->
@@ -160,16 +157,6 @@
         <span class="service-category-title" style="color:var(--accent-light);">Software & Sistema Operativo</span>
       </div>
 
-      <div class="service-card" data-cat="software" data-keywords="diagnostico revision pc notebook">
-        <div class="service-info">
-          <div class="service-name">Diagnóstico / revisión</div>
-          <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$16.500</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
 
       <div class="service-card" data-cat="software" data-keywords="formateo instalacion sistema operativo windows consola playstation xbox">
         <div class="service-info">
@@ -320,28 +307,6 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica pc">
-        <div class="service-info">
-          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
-          <div class="service-devices"><span class="device-tag">PC</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$38.600</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica notebook consola playstation xbox">
-        <div class="service-info">
-          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$53.500</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
       <div class="service-card" data-cat="hardware" data-keywords="clonado disco sin errores smart migrar">
         <div class="service-info">
           <div class="service-name">Clonado de disco sin errores SMART</div>
@@ -364,78 +329,8 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="reballing mother placa base soldadura">
-        <div class="service-info">
-          <div class="service-name">Reballing hardware / motherboard</div>
-          <div class="service-devices"><span class="device-tag">Hardware</span><span class="device-tag">Mother</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$114.900</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
 
-      <!-- ─ NOTEBOOK ─ -->
-      <div class="service-category-header" data-cat="notebook">
-        <div class="service-category-icon" style="background:rgba(245,158,11,0.1);">💻</div>
-        <span class="service-category-title" style="color:var(--amber);">Reparaciones Notebook</span>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio flex notebook pantalla cable">
-        <div class="service-info">
-          <div class="service-name">Cambio de Flex</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$48.600</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pantalla display notebook rota">
-        <div class="service-info">
-          <div class="service-name">Cambio de pantalla</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$43.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio teclado keyboard notebook">
-        <div class="service-info">
-          <div class="service-name">Cambio de teclado</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$29.000</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="despiece componentes internos notebook consola">
-        <div class="service-info">
-          <div class="service-name">Despiece + cambio de componentes internos</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$60.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
-      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pin carga cargador puerto notebook">
-        <div class="service-info">
-          <div class="service-name">Cambio de pin de carga</div>
-          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
-        </div>
-        <div class="service-price-col">
-          <div class="service-price">$77.800</div>
-          <div class="service-price-label">Freelance / taller</div>
-        </div>
-      </div>
-
+  
       <!-- ─ DOMICILIO ─ -->
       <div class="service-category-header" data-cat="domicilio">
         <div class="service-category-icon" style="background:rgba(6,182,212,0.1);">🏠</div>
@@ -497,41 +392,47 @@
     <div class="empty-state" id="empty-state">
       <p>No se encontraron servicios. <a onclick="window.resetAll()">Ver todos →</a></p>
     </div>
-  </div>
+
+  </div> <!-- Fin del container principal -->
 </section>
 
 <!-- ── CÓMO FUNCIONA ── -->
-<section class="section how-section">
+<section class="section section--alt">
   <div class="container">
-    <div class="reveal">
-      <p class="section-label">¿Cómo funciona?</p>
+    <div class="section-header reveal">
+      <span class="section-label">¿Cómo funciona?</span>
       <h2 class="section-title">Del contacto a la solución<br/>en pocos pasos</h2>
     </div>
-    <div class="how-grid reveal">
-      <div class="how-step">
-        <span class="how-step-num">01</span>
-        <div class="how-step-title">Me contactás</div>
-        <div class="how-step-desc">Por WhatsApp o el formulario. Contame el problema y el equipo afectado.</div>
+    
+    <div class="process-grid reveal">
+      <div>
+        <span class="process-step-num">01</span>
+        <div class="process-step-title">Me contactás</div>
+        <p class="process-step-desc">Por WhatsApp o el formulario. Contame el problema y el equipo afectado.</p>
       </div>
-      <div class="how-step">
-        <span class="how-step-num">02</span>
-        <div class="how-step-title">Diagnóstico</div>
-        <div class="how-step-desc">Evalúo el problema de forma presencial o remota y te doy un presupuesto claro.</div>
+      
+      <div>
+        <span class="process-step-num">02</span>
+        <div class="process-step-title">Diagnóstico</div>
+        <p class="process-step-desc">Evalúo el problema de forma presencial o remota y te doy un presupuesto claro.</p>
       </div>
-      <div class="how-step">
-        <span class="how-step-num">03</span>
-        <div class="how-step-title">Aprobás</div>
-        <div class="how-step-desc">Solo se procede con tu visto bueno. Sin sorpresas ni trabajos extras no acordados.</div>
+      
+      <div>
+        <span class="process-step-num">03</span>
+        <div class="process-step-title">Aprobás</div>
+        <p class="process-step-desc">Solo se procede con tu visto bueno. Sin sorpresas ni trabajos extras no acordados.</p>
       </div>
-      <div class="how-step">
-        <span class="how-step-num">04</span>
-        <div class="how-step-title">Reparación</div>
-        <div class="how-step-desc">Se realiza el trabajo con herramientas profesionales y piezas de calidad.</div>
+      
+      <div>
+        <span class="process-step-num">04</span>
+        <div class="process-step-title">Reparación</div>
+        <p class="process-step-desc">Se realiza el trabajo con herramientas profesionales y piezas de calidad.</p>
       </div>
-      <div class="how-step">
-        <span class="how-step-num">05</span>
-        <div class="how-step-title">Entrega</div>
-        <div class="how-step-desc">Te devuelvo el equipo funcionando y te explico qué se hizo.</div>
+      
+      <div>
+        <span class="process-step-num">05</span>
+        <div class="process-step-title">Entrega</div>
+        <p class="process-step-desc">Te devuelvo el equipo funcionando y te explico qué se hizo.</p>
       </div>
     </div>
   </div>
