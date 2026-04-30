@@ -1801,3 +1801,6 @@ select option { background: var(--bg3); color: var(--text-primary); }
   .pricing-grid  { grid-template-columns: 1fr; }
   .hero-stats    { gap: 1.25rem; }
 }
+
+/* Testimonial service-type badge */
+.testimonial-role { display: flex; align-items: center; gap: 5px; }

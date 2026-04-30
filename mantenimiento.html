@@ -7,6 +7,7 @@
   <meta name="description" content="Servicio técnico de PC y notebooks en Mendoza. Software, hardware, formateo, virus, limpieza, armado de PC. A domicilio y en taller." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%236366f1%22/><text y=%2224%22 x=%224%22 font-size=%2222%22 font-family=%22sans-serif%22 font-weight=%22700%22 fill=%22white%22>D</text></svg>" />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   
@@ -14,28 +15,28 @@
 <body data-page="mantenimiento">
 
 <!-- ── NAV ── -->
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <a href="index.html" class="nav-logo">
     <span class="nav-logo-mark">D</span>
     DMR Web Design
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Inicio</a></li>
-    <li><a href="tipos.html">Landing Pages</a></li>
+    <li><a href="tipos.html">Tipos de Landing</a></li>
     <li><a href="mantenimiento.html" class="active">Mantenimiento PC</a></li>
     <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="contacto.html" class="nav-cta">Pedir turno →</a>
+  <a href="contacto.html" class="nav-cta">Pedir presupuesto →</a>
   <button class="nav-hamburger" id="hamburger" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="nav-mobile" id="mobile-nav">
   <a href="index.html">Inicio</a>
-  <a href="tipos.html">Landing Pages</a>
+  <a href="tipos.html">Tipos de Landing</a>
   <a href="mantenimiento.html" class="active">Mantenimiento PC</a>
   <a href="contacto.html">Contacto</a>
-  <a href="contacto.html" class="nav-cta-mobile">Pedir turno →</a>
+  <a href="contacto.html" class="nav-cta-mobile">Pedir presupuesto →</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -159,7 +160,7 @@
         <span class="service-category-title" style="color:var(--accent-light);">Software & Sistema Operativo</span>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="diagnostico revision pc notebook">
+      <div class="service-card" data-cat="software" data-keywords="diagnostico revision pc notebook">
         <div class="service-info">
           <div class="service-name">Diagnóstico / revisión</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -170,7 +171,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="formateo instalacion sistema operativo windows consola playstation xbox">
+      <div class="service-card" data-cat="software" data-keywords="formateo instalacion sistema operativo windows consola playstation xbox">
         <div class="service-info">
           <div class="service-name">Formateo e instalación de SO sin BackUp</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
@@ -181,7 +182,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="formateo instalacion sistema operativo limpieza ssd backup programas basicos">
+      <div class="service-card" data-cat="software" data-keywords="formateo instalacion sistema operativo limpieza ssd backup programas basicos">
         <div class="service-info">
           <div class="service-name">Limpieza + Formateo SO + Programas básicos + BackUp 100gb + cambio a SSD</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
@@ -192,7 +193,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="backup datos extra">
+      <div class="service-card" data-cat="software" data-keywords="backup datos extra">
         <div class="service-info">
           <div class="service-name">BackUp de datos (cada 100gb extras)</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -203,7 +204,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="inicializacion equipo nuevo configuracion programas basicos">
+      <div class="service-card" data-cat="software" data-keywords="inicializacion equipo nuevo configuracion programas basicos">
         <div class="service-info">
           <div class="service-name">Inicialización de equipo nuevo (config. + programas básicos)</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -214,7 +215,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="instalacion programas opensource open source gratis">
+      <div class="service-card" data-cat="software" data-keywords="instalacion programas opensource open source gratis">
         <div class="service-info">
           <div class="service-name">Instalación de programa OpenSource x1</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -225,7 +226,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="instalacion programas comerciales office adobe provisto">
+      <div class="service-card" data-cat="software" data-keywords="instalacion programas comerciales office adobe provisto">
         <div class="service-info">
           <div class="service-name">Instalación de programa comercial x1 (provisto por cliente)</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -236,7 +237,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="drivers controladores configuracion instalacion">
+      <div class="service-card" data-cat="software" data-keywords="drivers controladores configuracion instalacion">
         <div class="service-info">
           <div class="service-name">Instalación y configuración de drivers</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -247,7 +248,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="virus malware eliminacion antivirus">
+      <div class="service-card" data-cat="software" data-keywords="virus malware eliminacion antivirus">
         <div class="service-info">
           <div class="service-name">Eliminación de malware / virus</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -258,7 +259,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="reparacion inicio windows restablecimiento sesion contrasena">
+      <div class="service-card" data-cat="software" data-keywords="reparacion inicio windows restablecimiento sesion contrasena">
         <div class="service-info">
           <div class="service-name">Reparación de inicio de Windows / restablecimiento de sesión</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -269,7 +270,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="software" data-keywords="conexion remota problemas generales soporte online">
+      <div class="service-card" data-cat="software" data-keywords="conexion remota problemas generales soporte online">
         <div class="service-info">
           <div class="service-name">Conexión remota x1 hora — problemas generales</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -286,7 +287,7 @@
         <span class="service-category-title" style="color:var(--green);">Hardware & Componentes</span>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="armar pc basica desde cero">
+      <div class="service-card" data-cat="hardware" data-keywords="armar pc basica desde cero">
         <div class="service-info">
           <div class="service-name">Armado de PC básica desde cero</div>
           <div class="service-devices"><span class="device-tag">PC</span></div>
@@ -297,7 +298,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="armar pc gamer gaming desde cero">
+      <div class="service-card" data-cat="hardware" data-keywords="armar pc gamer gaming desde cero">
         <div class="service-info">
           <div class="service-name">Armado de PC gamer desde cero</div>
           <div class="service-devices"><span class="device-tag">PC</span></div>
@@ -308,7 +309,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="cambio componentes hardware ram disco ssd gpu">
+      <div class="service-card" data-cat="hardware" data-keywords="cambio componentes hardware ram disco ssd gpu">
         <div class="service-info">
           <div class="service-name">Cambio de componente hardware x1 (RAM, GPU, disco, etc.)</div>
           <div class="service-devices"><span class="device-tag">PC</span></div>
@@ -319,7 +320,29 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="clonado disco sin errores smart migrar">
+      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica pc">
+        <div class="service-info">
+          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
+          <div class="service-devices"><span class="device-tag">PC</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$38.600</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-category-header" data-cat="hardware" data-keywords="limpieza hardware pasta termica notebook consola playstation xbox">
+        <div class="service-info">
+          <div class="service-name">Limpieza de hardware + cambio de pasta térmica</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$53.500</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-card" data-cat="hardware" data-keywords="clonado disco sin errores smart migrar">
         <div class="service-info">
           <div class="service-name">Clonado de disco sin errores SMART</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -330,7 +353,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="hardware" data-keywords="clonado disco con errores smart recuperacion datos">
+      <div class="service-card" data-cat="hardware" data-keywords="clonado disco con errores smart recuperacion datos">
         <div class="service-info">
           <div class="service-name">Clonado de disco con errores SMART</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -341,6 +364,77 @@
         </div>
       </div>
 
+      <div class="service-category-header" data-cat="hardware" data-keywords="reballing mother placa base soldadura">
+        <div class="service-info">
+          <div class="service-name">Reballing hardware / motherboard</div>
+          <div class="service-devices"><span class="device-tag">Hardware</span><span class="device-tag">Mother</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$114.900</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <!-- ─ NOTEBOOK ─ -->
+      <div class="service-category-header" data-cat="notebook">
+        <div class="service-category-icon" style="background:rgba(245,158,11,0.1);">💻</div>
+        <span class="service-category-title" style="color:var(--amber);">Reparaciones Notebook</span>
+      </div>
+
+      <div class="service-category-header" data-cat="notebook" data-keywords="cambio flex notebook pantalla cable">
+        <div class="service-info">
+          <div class="service-name">Cambio de Flex</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$48.600</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pantalla display notebook rota">
+        <div class="service-info">
+          <div class="service-name">Cambio de pantalla</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$43.800</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-category-header" data-cat="notebook" data-keywords="cambio teclado keyboard notebook">
+        <div class="service-info">
+          <div class="service-name">Cambio de teclado</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$29.000</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-category-header" data-cat="notebook" data-keywords="despiece componentes internos notebook consola">
+        <div class="service-info">
+          <div class="service-name">Despiece + cambio de componentes internos</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span><span class="device-tag">Consolas</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$60.800</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
+
+      <div class="service-category-header" data-cat="notebook" data-keywords="cambio pin carga cargador puerto notebook">
+        <div class="service-info">
+          <div class="service-name">Cambio de pin de carga</div>
+          <div class="service-devices"><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
+        </div>
+        <div class="service-price-col">
+          <div class="service-price">$77.800</div>
+          <div class="service-price-label">Freelance / taller</div>
+        </div>
+      </div>
 
       <!-- ─ DOMICILIO ─ -->
       <div class="service-category-header" data-cat="domicilio">
@@ -348,7 +442,7 @@
         <span class="service-category-title" style="color:var(--cyan);">Visitas a Domicilio</span>
       </div>
 
-      <div class="service-category-header" data-cat="domicilio" data-keywords="visita domicilio hora trabajo presencial">
+      <div class="service-card" data-cat="domicilio" data-keywords="visita domicilio hora trabajo presencial">
         <div class="service-info">
           <div class="service-name">Visita a domicilio x 1 hora</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -359,7 +453,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="domicilio" data-keywords="visita domicilio emergencia fuera horario urgente">
+      <div class="service-card" data-cat="domicilio" data-keywords="visita domicilio emergencia fuera horario urgente">
         <div class="service-info">
           <div class="service-name">Visita a domicilio x 1 hora — Emergencia fuera de horario</div>
           <div class="service-devices"><span class="device-tag">PC</span><span class="device-tag">Notebook</span><span class="device-tag">AIO</span></div>
@@ -370,7 +464,7 @@
         </div>
       </div>
 
-      <div class="service-category-header" data-cat="domicilio" data-keywords="configuracion router access point red wifi">
+      <div class="service-card" data-cat="domicilio" data-keywords="configuracion router access point red wifi">
         <div class="service-info">
           <div class="service-name">Configuración Router / Access Point in site</div>
           <div class="service-devices"><span class="device-tag">Red</span><span class="device-tag">WiFi</span></div>
@@ -387,7 +481,7 @@
         <span class="service-category-title" style="color:#a78bfa;">Celulares, Tablets & Otros</span>
       </div>
 
-      <div class="service-category-header" data-cat="otros" data-keywords="hard reset tablet celular ipad configuracion">
+      <div class="service-card" data-cat="otros" data-keywords="hard reset tablet celular ipad configuracion">
         <div class="service-info">
           <div class="service-name">Hard Reset + configuración</div>
           <div class="service-devices"><span class="device-tag">Celular</span><span class="device-tag">Tablet</span><span class="device-tag">iPad</span></div>
@@ -422,7 +516,7 @@
       <div class="how-step">
         <span class="how-step-num">02</span>
         <div class="how-step-title">Diagnóstico</div>
-        <div class="how-step-desc">Evaluó el problema de forma presencial o remota y te doy un presupuesto claro.</div>
+        <div class="how-step-desc">Evalúo el problema de forma presencial o remota y te doy un presupuesto claro.</div>
       </div>
       <div class="how-step">
         <span class="how-step-num">03</span>
@@ -445,7 +539,7 @@
 
 <!-- ── CTA ── -->
 <section class="section section--alt" style="text-align:center;">
-  <div class="container"></div>
+  <div class="container">
   <div class="reveal" style="max-width:480px;margin:0 auto;">
     <h2 class="section-title" style="margin-bottom:.75rem;">¿Tu PC tiene un problema?</h2>
     <p class="section-sub" style="margin:0 auto 2rem;">Escribime y te doy un diagnóstico. A domicilio, en taller o de forma remota desde Mendoza.</p>
@@ -453,6 +547,7 @@
         <a href="contacto.html" class="btn btn--primary btn--lg">Hablar con Diego →</a>
         <a href="https://wa.me/5492615892555?text=Hola%20Diego%2C%20necesito%20hacerte%20una%20consulta" target="_blank" class="btn btn--wa btn--lg">💬 WhatsApp</a>
       </div>
+    </div>
   </div>
 </section>
 
