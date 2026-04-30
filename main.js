@@ -354,20 +354,25 @@ const ContactForm = (() => {
     }
   }
 
-  function _buildWAFallback(data) {
+  function _buildWAFallback() {
+    const name = document.getElementById('name')?.value.trim() || '';
+    const email = document.getElementById('email')?.value.trim() || '';
+    const tipo = document.getElementById('tipo')?.value || '';
+    const budget = document.getElementById('budget')?.value || '';
+    const message = document.getElementById('message')?.value.trim() || '';
+    
     const msg = encodeURIComponent(
       `Hola Diego! Te escribo desde el formulario web.\n\n` +
-      `Nombre: ${data.name}\nEmail: ${data.email}\n` +
-      `Tipo: ${data.tipo}\nPresupuesto: ${data.budget}\n\n${data.message}`
+      `Nombre: ${name}\nEmail: ${email}\n` +
+      `Tipo: ${tipo}\nPresupuesto: ${budget}\n\n${message}`
     );
-    return `Hubo un error al enviar. ` +
+    return `Hubo un error al enviar el correo. ` +
       `<a href="https://wa.me/${CONFIG.WA_NUMBER}?text=${msg}" target="_blank" ` +
-      `style="color:var(--accent-light)">Hacé clic acá para enviar por WhatsApp →</a>`;
+      `style="color:var(--accent-light); text-decoration: underline;">Hacé clic acá para enviarlo por WhatsApp →</a>`;
   }
 
   function _resetForm(form) {
     form.reset();
-    // Re-select default budget
     document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('selected'));
     document.querySelector('.budget-btn[data-value="pro"]')?.classList.add('selected');
     const budgetInput = document.getElementById('budget');
@@ -384,30 +389,27 @@ const ContactForm = (() => {
     btn?.classList.add('loading');
     if (btn) btn.disabled = true;
 
-    const data = {
-      name:    document.getElementById('name')?.value.trim(),
-      email:   document.getElementById('email')?.value.trim(),
-      phone:   document.getElementById('phone')?.value.trim(),
-      tipo:    document.getElementById('tipo')?.value,
-      budget:  document.getElementById('budget')?.value,
-      message: document.getElementById('message')?.value.trim(),
-    };
+    const form = e.target;
+    const data = new FormData(form);
 
     try {
-      const res = await fetch(`https://formspree.io/f/xqegbdbe`, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify(data),
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
       if (res.ok) {
         _showBanner('success');
-        _resetForm(e.target);
+        _resetForm(form);
       } else {
-        throw new Error(`HTTP ${res.status}`);
+        throw new Error(`HTTP Error: ${res.status}`);
       }
-    } catch {
-      _showBanner('error', _buildWAFallback(data));
+    } catch (error) {
+      console.error("Error en Formspree:", error);
+      _showBanner('error', _buildWAFallback());
     } finally {
       btn?.classList.remove('loading');
       if (btn) btn.disabled = false;
@@ -420,27 +422,15 @@ const ContactForm = (() => {
 
     form.addEventListener('submit', _handleSubmit);
 
-    // Live blur validation
     Object.keys(RULES).forEach(id => {
       const el = document.getElementById(id);
       el?.addEventListener('blur', () => _validateField(id));
       el?.addEventListener('input', () => el.classList.remove('error'));
     });
-
-    // Budget buttons
-    document.querySelectorAll('.budget-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        const budgetInput = document.getElementById('budget');
-        if (budgetInput) budgetInput.value = btn.dataset.value;
-      });
-    });
   }
 
   return { init };
 })();
-
 /* ─────────────────────────────────────────────────────────
    9. URL PARAMS → FORM PRE-FILL
    ───────────────────────────────────────────────────────── */

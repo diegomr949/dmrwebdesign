@@ -176,7 +176,8 @@
           </svg>
         </a>
 
-        <a href="/cdn-cgi/l/email-protection#73171a16141c1e014a474a33141e121a1f5d101c1e" class="contact-item">
+        <!-- CORRECCIÓN DEL EMAIL -->
+        <a href="mailto:diegomr949@gmail.com" class="contact-item">
           <div class="contact-item-icon" style="background:var(--accent-glow);">
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
@@ -187,98 +188,101 @@
           </div>
           <div style="flex:1;">
             <div class="contact-item-label">Email</div>
-            <div class="contact-item-value"><span class="__cf_email__" data-cfemail="17737e7270787a652e232e57707a767e7b3974787a">[email&#160;protected]</span></div>
+            <div class="contact-item-value"><!--email_off-->diegomr949@gmail.com<!--/email_off--></div>
           </div>
         </a>
 
         <div class="contact-hours">
           <div class="contact-hours-title">Horario de atención</div>
-          <p><span class="status-dot"></span>Lunes a Viernes, 9:00 — 18:00 hs (Argentina)</p>
+          <p><span class="status-dot"></span>Lunes a Viernes, 8:00 — 20:00 hs (Argentina)</p>
         </div>
       </div>
 
       <div class="form-wrap anim-3" id="form">
-        <h2 class="form-title">Enviame un mensaje</h2>
+
 
         <div class="form-banner form-banner--success" id="banner-success">
           <span>✅</span>
-          <span><strong>¡Mensaje enviado!</strong> Te respondo en menos de 24 horas con una propuesta para tu
-            proyecto.</span>
+          <span><strong>¡Mensaje enviado!</strong> Te respondo en menos de 24 horas con una propuesta para tu proyecto.</span>
         </div>
         <div class="form-banner form-banner--error" id="banner-error">
           <span>⚠️</span>
           <span id="banner-error-text">Hubo un error al enviar. Intentá de nuevo o escribime por WhatsApp.</span>
         </div>
 
-        <form id="contact-form" novalidate action="https://formspree.io/f/xqegbdbe" method="POST">
-          <div class="form-row">
-            <div class="form-group" style="margin-bottom:0;">
-              <label for="name">Nombre <span class="required">*</span></label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre" autocomplete="given-name" />
-              <div class="field-error" id="name-error">Ingresá tu nombre</div>
-            </div>
-            <div class="form-group" style="margin-bottom:0;">
-              <label for="email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" />
-              <div class="field-error" id="email-error">Ingresá un email válido</div>
-            </div>
-          </div>
+        <!-- CORRECCIÓN DEL FORMULARIO -->
+        <!-- modify this form HTML and place wherever you want your form -->
+<div class="form-wrap anim-3" id="form">
+  <h2 class="form-title">Enviame un mensaje</h2>
 
-          <div class="form-group">
-            <label for="phone">Teléfono / WhatsApp <span class="optional">(opcional)</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="+54 9 ..." autocomplete="tel" />
-          </div>
+  <div class="form-banner form-banner--success" id="banner-success">
+    <span>✅</span>
+    <span><strong>¡Mensaje enviado!</strong> Te respondo en menos de 24 horas con una propuesta para tu proyecto.</span>
+  </div>
+  <div class="form-banner form-banner--error" id="banner-error">
+    <span>⚠️</span>
+    <span id="banner-error-text">Hubo un error al enviar. Intentá de nuevo o escribime por WhatsApp.</span>
+  </div>
 
-          <div class="form-group">
-            <label for="tipo">Tipo de servicio <span class="required">*</span></label>
-            <select id="tipo" name="tipo">
-              <option value="">Seleccioná una opción</option>
-              <optgroup label="Landing Pages">
-                <option value="consulta">Consulta general</option>
-                <option value="negocios">Negocio Local</option>
-                <option value="profesional">Servicio Profesional</option>
-                <option value="ecommerce">Producto / E-commerce</option>
-                <option value="evento">Evento / Curso</option>
-                <option value="invitacion">Invitación (15/Boda)</option>
-                <option value="inmobiliaria">Inmobiliaria</option>
-                <option value="campana">Campaña de Marketing</option>
-              </optgroup>
-              <optgroup label="Mantenimiento PC">
-                <option value="mantenimiento-software">Software / SO / Virus</option>
-                <option value="mantenimiento-hardware">Hardware / Limpieza</option>
-                <option value="mantenimiento-notebook">Reparación Notebook</option>
-                <option value="mantenimiento-domicilio">Visita a domicilio</option>
-              </optgroup>
-              <option value="otro">Otro</option>
-            </select>
-            <div class="field-error" id="tipo-error">Seleccioná un tipo</div>
-          </div>
+  <form id="contact-form" action="https://formspree.io/f/xqegbdbe" method="POST">
+    
+    <div class="form-row">
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="name">Nombre <span class="required">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Tu nombre" autocomplete="given-name" required />
+        <div class="field-error" id="name-error">Ingresá tu nombre</div>
+      </div>
+      <div class="form-group" style="margin-bottom:0;">
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" name="email" placeholder="tu@email.com" autocomplete="email" required />
+        <div class="field-error" id="email-error">Ingresá un email válido</div>
+      </div>
+    </div>
 
-          <div class="form-group">
-            <label>Presupuesto estimado</label>
-            <div class="budget-options">
-              <button type="button" class="budget-btn" data-value="basico">Plan Básico (~$200)</button>
-              <button type="button" class="budget-btn selected" data-value="pro">Plan Pro (~$350)</button>
-              <button type="button" class="budget-btn" data-value="premium">Plan Premium (~$550)</button>
-              <button type="button" class="budget-btn" data-value="custom">A cotizar</button>
-            </div>
-            <input type="hidden" id="budget" name="budget" value="pro" />
-          </div>
+    <div class="form-group">
+      <label for="phone">Teléfono / WhatsApp <span class="optional">(opcional)</span></label>
+      <input type="tel" id="phone" name="phone" placeholder="+54 9 ..." autocomplete="tel" />
+    </div>
 
-          <div class="form-group">
-            <label for="message">Contame sobre tu proyecto <span class="required">*</span></label>
-            <textarea id="message" name="message"
-              placeholder="¿Qué necesitás? ¿Tenés referencias de diseño? ¿Cuándo lo necesitás?"></textarea>
-            <div class="field-error" id="message-error">Contame un poco sobre tu proyecto</div>
-          </div>
+    <div class="form-group">
+      <label for="tipo">Tipo de servicio <span class="required">*</span></label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Seleccioná una opción</option>
+        <optgroup label="Landing Pages">
+          <option value="consulta">Consulta general</option>
+          <option value="negocios">Negocio Local</option>
+          <option value="profesional">Servicio Profesional</option>
+          <option value="ecommerce">Producto / E-commerce</option>
+          <option value="evento">Evento / Curso</option>
+          <option value="invitacion">Invitación (15/Boda)</option>
+          <option value="inmobiliaria">Inmobiliaria</option>
+          <option value="campana">Campaña de Marketing</option>
+        </optgroup>
+        <optgroup label="Mantenimiento PC">
+          <option value="mantenimiento-software">Software / SO / Virus</option>
+          <option value="mantenimiento-hardware">Hardware / Limpieza</option>
+          <option value="mantenimiento-notebook">Reparación Notebook</option>
+          <option value="mantenimiento-domicilio">Visita a domicilio</option>
+        </optgroup>
+        <option value="otro">Otro</option>
+      </select>
+      <div class="field-error" id="tipo-error">Seleccioná un tipo</div>
+    </div>
 
 
-          <button type="submit" class="form-submit" id="submit-btn">
-            <span class="btn-label">Enviar mensaje →</span>
-            <span class="spinner"></span>
-          </button>
-          <p class="privacy-note">🔒 Tus datos solo se usan para responderte. No enviamos spam.</p>
-        </form>
+    <div class="form-group">
+      <label for="message">Contame sobre tu proyecto <span class="required">*</span></label>
+      <textarea id="message" name="message" placeholder="¿Qué necesitás? ¿Tenés referencias de diseño? ¿Cuándo lo necesitás?" required></textarea>
+      <div class="field-error" id="message-error">Contame un poco sobre tu proyecto</div>
+    </div>
+
+    <button type="submit" class="form-submit" id="submit-btn">
+      <span class="btn-label">Enviar mensaje →</span>
+      <span class="spinner"></span>
+    </button>
+    <p class="privacy-note">🔒 Tus datos solo se usan para responderte. No enviamos spam.</p>
+  </form>
+</div>
       </div>
 
     </div>
@@ -295,6 +299,12 @@
     </div>
   </footer>
   <script src="main.js"></script>
+  <script>
+    // Pequeño script local para mostrar el mensaje de éxito si formspree redirige de vuelta
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        document.getElementById('banner-success').classList.add('visible');
+    }
+  </script>
 </body>
-
 </html>
