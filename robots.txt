@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://diegomr949.github.io/dmrwebdesign/sitemap.xml
+Sitemap: https://dmrwebdesign.com.ar/sitemap.xml
