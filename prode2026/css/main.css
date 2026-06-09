@@ -486,8 +486,10 @@ body {
 /*.rtable thead th:nth-child(2) { text-align: left; }*/
 
 .rtable thead th:not(:nth-child(2)) { text-align: center; }
-.rtable td:not(:nth-child(2))       { text-align: center; }
-.rpos { display: flex; align-items: center; justify-content: center; ... }
+.rtable td:not(:nth-child(2)) { text-align: center; }
+.rpos   { display: flex; align-items: center; justify-content: center; font-family: var(--disp); font-size: 19px; font-weight: 800; color: var(--tmut); }
+
+
 
 .rtable tbody tr {
   border-bottom: 1px solid var(--b1);
