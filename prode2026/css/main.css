@@ -471,7 +471,7 @@ body {
    RANKING TABLE
 ════════════════════════════════════════════════════════ */
 .rtable-wrap { background: var(--bg-2); border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; }
-.rtable      { width: 100%; border-collapse: collapse; }
+.rtable      { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
 .rtable thead th {
   background: var(--bg-3); color: var(--t2);
@@ -481,24 +481,49 @@ body {
   border-bottom: 1px solid var(--b1);
 }
 
-.rtable tbody tr { border-bottom: 1px solid var(--b1); transition: background var(--t-fast) var(--ease); position: relative; }
+/* Column widths — fixed so emojis don't push anything */
+.rtable thead th:nth-child(1) { width: 56px;  }   /* # posición   */
+.rtable thead th:nth-child(2) { width: auto;  }   /* Participante */
+.rtable thead th:nth-child(3) { width: 90px;  }   /* Puntos       */
+.rtable thead th:nth-child(4) { width: 90px;  }   /* Plenos       */
+.rtable thead th:nth-child(5) { width: 110px; }   /* % Aciertos   */
+.rtable thead th:nth-child(6) { width: 110px; }   /* Predicciones */
+
+.rtable tbody tr {
+  border-bottom: 1px solid var(--b1);
+  transition: background var(--t-fast) var(--ease);
+}
 .rtable tbody tr:last-child { border-bottom: none; }
 .rtable tbody tr:hover { background: rgba(255,255,255,0.025); }
-.rtable tbody tr.isme { background: rgba(0,51,160,0.10); }
-.rtable tbody tr.isme::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; background: var(--blue-us-bright);
-}
-.rtable td { padding: 13px 18px; color: var(--t1); font-size: 14px; vertical-align: middle; }
 
-.rpos { font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--t0); }
-.rname { font-weight: 700; font-size: 14px; }
+/* isme — borde izquierdo con box-shadow para no desplazar celdas */
+.rtable tbody tr.isme { background: rgba(0,51,160,0.10); }
+.rtable tbody tr.isme td:first-child {
+  box-shadow: inset 3px 0 0 var(--blue-us-bright);
+}
+
+.rtable td {
+  padding: 13px 18px; color: var(--t1);
+  font-size: 14px; vertical-align: middle;
+  overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Posición — ancho fijo, centrado, emoji y número alineados igual */
+.rtable td:nth-child(1) { text-align: center; padding-left: 0; padding-right: 0; }
+
+.rpos {
+  font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--t0);
+  display: inline-block; width: 36px; text-align: center; line-height: 1;
+}
+
+.rname  { font-weight: 700; font-size: 14px; }
 .remail { font-size: 12px; color: var(--t2); margin-top: 3px; }
-.rpts  { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--gold); }
+.rpts   { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--gold); }
 .metag {
   background: var(--blue-us); color: #fff; font-size: 9px;
   padding: 2px 7px; border-radius: 3px; text-transform: uppercase;
   font-weight: 700; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle;
+  display: inline-block;
 }
 
 /* ════════════════════════════════════════════════════════
