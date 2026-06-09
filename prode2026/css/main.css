@@ -471,40 +471,19 @@ body {
    RANKING TABLE
 ════════════════════════════════════════════════════════ */
 .rtable-wrap { background: var(--bg-2); border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; }
-.rtable      { width: 100%; border-collapse: collapse; table-layout: fixed; }
-
-/* ── Column widths (fixed layout requiere anchos explícitos) ── */
-.rtable col.col-pos   { width: 64px;  }
-.rtable col.col-name  { width: auto;  }
-.rtable col.col-pts   { width: 100px; }
-.rtable col.col-plen  { width: 100px; }
-.rtable col.col-pct   { width: 110px; }
-.rtable col.col-pred  { width: 110px; }
-
-/* Con table-layout:fixed los anchos vienen del thead — definirlos acá */
-.rtable thead th:nth-child(1) { width: 64px;  }
-.rtable thead th:nth-child(3) { width: 100px; }
-.rtable thead th:nth-child(4) { width: 100px; }
-.rtable thead th:nth-child(5) { width: 110px; }
-.rtable thead th:nth-child(6) { width: 110px; }
+.rtable      { width: 100%; border-collapse: collapse; }
 
 .rtable thead th {
   background: var(--bg-3); color: var(--t2);
   font-family: var(--body); font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 1.2px;
-  padding: 14px 16px; text-align: left;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--b1);
-  white-space: nowrap; overflow: hidden;
-}
-
-/* Columna # — centrada en header y body */
-.rtable th:nth-child(1),
-.rtable td:nth-child(1) {
+  white-space: nowrap;
   text-align: center;
-  padding-left: 0;
-  padding-right: 0;
-  width: 64px;
 }
+/* Solo la columna Participante va a la izquierda */
+.rtable thead th:nth-child(2) { text-align: left; }
 
 .rtable tbody tr {
   border-bottom: 1px solid var(--b1);
@@ -513,7 +492,7 @@ body {
 .rtable tbody tr:last-child { border-bottom: none; }
 .rtable tbody tr:hover { background: rgba(255,255,255,0.025); }
 
-/* isme — box-shadow en lugar de ::before para no romper table layout */
+/* isme — box-shadow en lugar de position:absolute para no romper el layout */
 .rtable tbody tr.isme { background: rgba(0,51,160,0.10); }
 .rtable tbody tr.isme td:nth-child(1) {
   box-shadow: inset 3px 0 0 var(--blue-us-bright);
@@ -522,20 +501,19 @@ body {
 .rtable td {
   padding: 13px 16px; color: var(--t1);
   font-size: 14px; vertical-align: middle;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  text-align: center;
 }
-/* Nombre puede hacer wrap */
-.rtable td:nth-child(2) { white-space: normal; }
+/* Solo la columna Participante va a la izquierda */
+.rtable td:nth-child(2) { text-align: left; }
 
-/* Posición: número y emoji con el mismo espacio visual */
+/* Posición: flex centrado, mismo espacio para número y emoji */
 .rpos {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px;
-  font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--t0);
-  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--t0);
+  min-width: 32px; line-height: 1;
 }
 
-.rname  { font-weight: 700; font-size: 14px; white-space: normal; }
+.rname  { font-weight: 700; font-size: 14px; }
 .remail { font-size: 12px; color: var(--t2); margin-top: 3px; }
 .rpts   { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--gold); }
 .metag {
