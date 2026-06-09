@@ -473,21 +473,38 @@ body {
 .rtable-wrap { background: var(--bg-2); border: 1px solid var(--b1); border-radius: var(--r-lg); overflow: hidden; }
 .rtable      { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
+/* ── Column widths (fixed layout requiere anchos explícitos) ── */
+.rtable col.col-pos   { width: 64px;  }
+.rtable col.col-name  { width: auto;  }
+.rtable col.col-pts   { width: 100px; }
+.rtable col.col-plen  { width: 100px; }
+.rtable col.col-pct   { width: 110px; }
+.rtable col.col-pred  { width: 110px; }
+
+/* Con table-layout:fixed los anchos vienen del thead — definirlos acá */
+.rtable thead th:nth-child(1) { width: 64px;  }
+.rtable thead th:nth-child(3) { width: 100px; }
+.rtable thead th:nth-child(4) { width: 100px; }
+.rtable thead th:nth-child(5) { width: 110px; }
+.rtable thead th:nth-child(6) { width: 110px; }
+
 .rtable thead th {
   background: var(--bg-3); color: var(--t2);
   font-family: var(--body); font-size: 10px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 1.2px;
-  padding: 14px 18px; text-align: left;
+  padding: 14px 16px; text-align: left;
   border-bottom: 1px solid var(--b1);
+  white-space: nowrap; overflow: hidden;
 }
 
-/* Column widths — fixed so emojis don't push anything */
-.rtable thead th:nth-child(1) { width: 56px;  }   /* # posición   */
-.rtable thead th:nth-child(2) { width: auto;  }   /* Participante */
-.rtable thead th:nth-child(3) { width: 90px;  }   /* Puntos       */
-.rtable thead th:nth-child(4) { width: 90px;  }   /* Plenos       */
-.rtable thead th:nth-child(5) { width: 110px; }   /* % Aciertos   */
-.rtable thead th:nth-child(6) { width: 110px; }   /* Predicciones */
+/* Columna # — centrada en header y body */
+.rtable th:nth-child(1),
+.rtable td:nth-child(1) {
+  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  width: 64px;
+}
 
 .rtable tbody tr {
   border-bottom: 1px solid var(--b1);
@@ -496,34 +513,36 @@ body {
 .rtable tbody tr:last-child { border-bottom: none; }
 .rtable tbody tr:hover { background: rgba(255,255,255,0.025); }
 
-/* isme — borde izquierdo con box-shadow para no desplazar celdas */
+/* isme — box-shadow en lugar de ::before para no romper table layout */
 .rtable tbody tr.isme { background: rgba(0,51,160,0.10); }
-.rtable tbody tr.isme td:first-child {
+.rtable tbody tr.isme td:nth-child(1) {
   box-shadow: inset 3px 0 0 var(--blue-us-bright);
 }
 
 .rtable td {
-  padding: 13px 18px; color: var(--t1);
+  padding: 13px 16px; color: var(--t1);
   font-size: 14px; vertical-align: middle;
-  overflow: hidden; text-overflow: ellipsis;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+/* Nombre puede hacer wrap */
+.rtable td:nth-child(2) { white-space: normal; }
 
-/* Posición — ancho fijo, centrado, emoji y número alineados igual */
-.rtable td:nth-child(1) { text-align: center; padding-left: 0; padding-right: 0; }
-
+/* Posición: número y emoji con el mismo espacio visual */
 .rpos {
-  font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--t0);
-  display: inline-block; width: 36px; text-align: center; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--t0);
+  line-height: 1;
 }
 
-.rname  { font-weight: 700; font-size: 14px; }
+.rname  { font-weight: 700; font-size: 14px; white-space: normal; }
 .remail { font-size: 12px; color: var(--t2); margin-top: 3px; }
 .rpts   { font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--gold); }
 .metag {
   background: var(--blue-us); color: #fff; font-size: 9px;
   padding: 2px 7px; border-radius: 3px; text-transform: uppercase;
   font-weight: 700; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle;
-  display: inline-block;
+  display: inline-block; white-space: nowrap;
 }
 
 /* ════════════════════════════════════════════════════════
