@@ -24,7 +24,7 @@ const Store = {
     Store._user = user
       ? {
           nombre: user.nombre,
-          email:  user.email,  // contiene el DNI como valor
+          email:  user.email,
           rol:    user.rol,
           area:   user.area || null,
         }
@@ -153,9 +153,9 @@ const Auth = {
     if (ubp)  ubp.textContent  = '0 pts';
     if (ubav) ubav.textContent = Fmt.iniciales(user.nombre);
 
-    if (State.isAdmin) {
-      document.querySelectorAll('.admin-nav-item').forEach(el => el.style.display = '');
-    }
+    document.querySelectorAll('.admin-nav-item').forEach(el => {
+      el.style.display = State.isAdmin ? '' : 'none';
+    });
 
     Auth._precargarDatos().then(() => {
       Router.go('partidos');
@@ -178,8 +178,8 @@ const Auth = {
 
     if (rr?.ok) {
       State.ranking = rr.data || [];
-      const mio   = State.ranking.find(u => u.email === State.user?.email);
-      const pts   = Object.values(State.misPreds)
+      const mio  = State.ranking.find(u => u.email === State.user?.email);
+      const pts  = Object.values(State.misPreds)
         .reduce((s, p) => s + (p.puntosObtenidos || 0), 0);
       const ubp  = document.getElementById('ubp');
       const spos = document.getElementById('spos');
