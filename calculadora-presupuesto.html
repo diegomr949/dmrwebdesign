@@ -541,6 +541,118 @@
       color: var(--accent2)
     }
 
+    /* ── CUSTOM ITEMS ── */
+    .custom-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 1.25rem;
+      margin-top: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .custom-add-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: .85rem;
+    }
+
+    .custom-add-row input {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--r);
+      padding: 9px 13px;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .custom-add-row input:focus {
+      border-color: var(--accent)
+    }
+
+    .custom-add-row input::placeholder {
+      color: var(--text3)
+    }
+
+    .custom-add-row input[type="text"] {
+      flex: 2;
+      min-width: 180px
+    }
+
+    .custom-add-row input[type="number"] {
+      flex: 1;
+      min-width: 130px
+    }
+
+    .custom-add-row .btn {
+      flex-shrink: 0
+    }
+
+    .custom-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .custom-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      border: 1px solid rgba(99, 102, 241, .3);
+    }
+
+    .custom-item-name {
+      font-size: 13px;
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .custom-item-price {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent2);
+      white-space: nowrap;
+    }
+
+    .custom-remove {
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      flex-shrink: 0;
+      transition: color .15s, background .15s;
+    }
+
+    .custom-remove:hover {
+      color: var(--red);
+      background: rgba(239, 68, 68, .12)
+    }
+
+    .custom-empty {
+      font-size: 12px;
+      color: var(--text3);
+      text-align: center;
+      padding: 6px 0
+    }
+
     /* ── FOOTER BAR ── */
     .footer-bar {
       position: fixed;
@@ -786,6 +898,16 @@
       .badge-live {
         display: none
       }
+
+      .custom-add-row input[type="text"],
+      .custom-add-row input[type="number"] {
+        flex: 1 1 100%
+      }
+
+      .custom-add-row .btn {
+        flex: 1 1 100%;
+        justify-content: center
+      }
     }
   </style>
 </head>
@@ -812,7 +934,8 @@
     <!-- HERO -->
     <div class="hero anim">
       <h1>Calculadora de<br /><span>presupuesto</span></h1>
-      <p>Seleccioná los servicios que necesitás y descargá un presupuesto formal en PDF al instante.</p>
+      <p>Seleccioná los servicios que necesitás, agregá items personalizados si hace falta, y descargá un presupuesto
+        formal en PDF al instante.</p>
     </div>
 
     <!-- CLIENT -->
@@ -859,6 +982,27 @@
     <!-- PANEL PC -->
     <div id="panel-pc" style="display:none">
       <div id="pc-services"></div>
+    </div>
+
+    <!-- CUSTOM ITEMS (siempre visible, aplica a cualquier presupuesto) -->
+    <div class="custom-section anim">
+      <div class="section-label">
+        Items personalizados
+        <span class="tab-count" id="custom-count">0</span>
+      </div>
+      <div class="custom-add-row">
+        <input type="text" id="customName" placeholder="Descripción del item (ej: Hosting anual)" autocomplete="off" />
+        <input type="number" id="customPrice" placeholder="Precio ARS" min="0" step="1000" />
+        <button class="btn btn-secondary" onclick="addCustomItem()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Agregar
+        </button>
+      </div>
+      <div class="custom-list" id="custom-list"></div>
     </div>
 
   </main>
@@ -968,8 +1112,16 @@
     let selectedPlan = null;
     let checkedSvc = {};
     let currentTab = 'web';
+    let customItems = [];
+    let customIdCounter = 1;
 
     const fmt = n => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
 
     // ════════════════════════════════════════════════
     // RENDER PLANS
@@ -1039,6 +1191,67 @@
     }
 
     // ════════════════════════════════════════════════
+    // RENDER CUSTOM ITEMS
+    // ════════════════════════════════════════════════
+    function renderCustom() {
+      const list = document.getElementById('custom-list');
+
+      if (customItems.length === 0) {
+        list.innerHTML = '<div class="custom-empty">Sin items personalizados agregados todavía</div>';
+      } else {
+        list.innerHTML = customItems.map(i => `
+      <div class="custom-item">
+        <span class="custom-item-name" title="${escapeHtml(i.name)}">${escapeHtml(i.name)}</span>
+        <span class="custom-item-price">${fmt(i.price)}</span>
+        <button class="custom-remove" onclick="removeCustomItem(${i.id})" title="Eliminar item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>`).join('');
+      }
+
+      const customTotal = customItems.reduce((a, i) => a + i.price, 0);
+      document.getElementById('custom-count').textContent =
+        customItems.length > 0 ? `${customItems.length} · ${fmt(customTotal)}` : '0';
+    }
+
+    function addCustomItem() {
+      const nameInput = document.getElementById('customName');
+      const priceInput = document.getElementById('customPrice');
+      const name = nameInput.value.trim();
+      const price = parseFloat(priceInput.value);
+
+      if (!name) {
+        nameInput.focus();
+        nameInput.style.borderColor = 'var(--red)';
+        setTimeout(() => { nameInput.style.borderColor = ''; }, 1400);
+        return;
+      }
+      if (isNaN(price) || price <= 0) {
+        priceInput.focus();
+        priceInput.style.borderColor = 'var(--red)';
+        setTimeout(() => { priceInput.style.borderColor = ''; }, 1400);
+        return;
+      }
+
+      customItems.push({ id: customIdCounter++, name, price });
+      nameInput.value = '';
+      priceInput.value = '';
+      nameInput.focus();
+
+      renderCustom();
+      updateFooter();
+    }
+
+    function removeCustomItem(id) {
+      customItems = customItems.filter(i => i.id !== id);
+      renderCustom();
+      updateFooter();
+    }
+
+    // ════════════════════════════════════════════════
     // INTERACTIONS
     // ════════════════════════════════════════════════
     function selectPlan(id) {
@@ -1064,8 +1277,10 @@
     function clearAll() {
       selectedPlan = null;
       checkedSvc = {};
+      customItems = [];
       renderPlans();
       renderPC();
+      renderCustom();
       updateFooter();
     }
 
@@ -1077,7 +1292,8 @@
       const webTotal = plan ? plan.price : 0;
       const pcItems = PC_CATS.flatMap(c => c.items.filter(i => checkedSvc[i.id]));
       const pcTotal = pcItems.reduce((a, i) => a + i.price, 0);
-      const grand = webTotal + pcTotal;
+      const customTotal = customItems.reduce((a, i) => a + i.price, 0);
+      const grand = webTotal + pcTotal + customTotal;
       const hasAny = grand > 0;
 
       // Total
@@ -1090,6 +1306,7 @@
       const lines = [];
       if (plan) lines.push({ label: `Web — ${plan.name}`, price: plan.price, badge: plan.badge });
       pcItems.forEach(i => lines.push({ label: `PC — ${i.name}`, price: i.price }));
+      customItems.forEach(i => lines.push({ label: `Personalizado — ${i.name}`, price: i.price }));
 
       if (lines.length > 0) {
         linesEl.style.display = 'flex';
@@ -1121,6 +1338,7 @@
         msg += `\n`;
         if (plan) msg += `• Web — ${plan.name}: ${fmt(plan.price)}\n`;
         pcItems.forEach(i => msg += `• PC — ${i.name}: ${fmt(i.price)}\n`);
+        customItems.forEach(i => msg += `• ${i.name}: ${fmt(i.price)}\n`);
         msg += `\nTOTAL: ${fmt(grand)}`;
         waBtn.href = `https://wa.me/5492615892555?text=${encodeURIComponent(msg)}`;
       }
@@ -1149,7 +1367,8 @@
       const pcItems = PC_CATS.flatMap(c => c.items.filter(i => checkedSvc[i.id]));
       const webTot = plan ? plan.price : 0;
       const pcTot = pcItems.reduce((a, i) => a + i.price, 0);
-      const grand = webTot + pcTot;
+      const customTot = customItems.reduce((a, i) => a + i.price, 0);
+      const grand = webTot + pcTot + customTot;
 
       const clientName = document.getElementById('clientName').value.trim();
       const clientEmail = document.getElementById('clientEmail').value.trim();
@@ -1193,7 +1412,7 @@
       doc.setFontSize(8);
       doc.setTextColor(...C.muted);
       doc.text('diegomr949@gmail.com  ·  +54 9 261 589-2555', pad + 30, 26);
-      doc.text('diegomr949.github.io/dmrwebdesign  ·  Mendoza, Argentina', pad + 30, 32);
+      doc.text('dmrwebdesign.com.ar  ·  Mendoza, Argentina', pad + 30, 32);
 
       // Accent line
       doc.setFillColor(...C.accent);
@@ -1244,6 +1463,12 @@
 
       // ── SECTION HELPER ──
       const drawSection = (title, rows, subtotal) => {
+        // Page break check
+        if (y > 250) {
+          doc.addPage();
+          y = 20;
+        }
+
         // Section header
         doc.setFillColor(235, 236, 255);
         doc.roundedRect(pad, y - 4, col2 - pad, 9, 2, 2, 'F');
@@ -1254,6 +1479,11 @@
         y += 12;
 
         rows.forEach(({ label, price, note, indent }) => {
+          if (y > 265) {
+            doc.addPage();
+            y = 20;
+          }
+
           doc.setFont('helvetica', indent ? 'normal' : 'normal');
           doc.setFontSize(9);
           doc.setTextColor(...C.bg);
@@ -1309,7 +1539,17 @@
         drawSection('Servicio Técnico PC', rows, pcTot);
       }
 
+      // ── CUSTOM SECTION ──
+      if (customItems.length > 0) {
+        const rows = customItems.map(i => ({ label: i.name, price: i.price }));
+        drawSection('Items Personalizados', rows, customTot);
+      }
+
       // ── GRAND TOTAL ──
+      if (y > 260) {
+        doc.addPage();
+        y = 20;
+      }
       y += 4;
       doc.setFillColor(...C.accent);
       doc.roundedRect(pad, y - 5, col2 - pad, 16, 3, 3, 'F');
@@ -1323,6 +1563,7 @@
 
       // ── PAYMENT NOTE ──
       if (plan) {
+        if (y > 270) { doc.addPage(); y = 20; }
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(8.5);
         doc.setTextColor(...C.muted);
@@ -1334,6 +1575,7 @@
       }
 
       // ── TERMS ──
+      if (y > 260) { doc.addPage(); y = 20; }
       y += 2;
       doc.setDrawColor(...C.dim);
       doc.setLineWidth(0.3);
@@ -1355,7 +1597,7 @@
       doc.setFontSize(7.5);
       doc.setTextColor(...C.muted);
       doc.text('DMR Web Design & IT  ·  Mendoza, Argentina', W / 2, fY + 5, { align: 'center' });
-      doc.text('diegomr949@gmail.com  ·  +54 9 261 589-2555  ·  diegomr949.github.io/dmrwebdesign', W / 2, fY + 10, { align: 'center' });
+      doc.text('diegomr949@gmail.com  ·  +54 9 261 589-2555  ·  dmrwebdesign.com.ar', W / 2, fY + 10, { align: 'center' });
 
       doc.save(fname);
 
@@ -1376,11 +1618,21 @@
     // ════════════════════════════════════════════════
     renderPlans();
     renderPC();
+    renderCustom();
     updateFooter();
 
     // Recalculate footer if client name changes (for WA link)
     document.getElementById('clientName').addEventListener('input', updateFooter);
+
+    // Enter key adds custom item from either input
+    document.getElementById('customName').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addCustomItem(); }
+    });
+    document.getElementById('customPrice').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addCustomItem(); }
+    });
   </script>
+
 </body>
 
 </html>
