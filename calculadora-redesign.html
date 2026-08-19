@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Calculadora de Presupuesto — DMR Web Design & IT</title>
+  <meta name="description" content="Armá tu presupuesto de landing page o servicio técnico de PC al instante. Precios transparentes, exportá a PDF o enviá por WhatsApp. Mendoza, Argentina." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Diego Moreno Rico" />
+  <meta property="og:title" content="Calculadora de Presupuesto — DMR Web Design & IT" />
+  <meta property="og:description" content="Armá tu presupuesto de landing page o servicio técnico de PC al instante. Precios transparentes, exportá a PDF o enviá por WhatsApp." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://dmrwebdesign.com.ar/og-image.png" />
+  <meta property="og:url" content="https://dmrwebdesign.com.ar/calculadora-presupuesto.html" />
+  <link rel="canonical" href="https://dmrwebdesign.com.ar/calculadora-presupuesto.html" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 180 180%22><rect width=%22180%22 height=%22180%22 rx=%2240%22 fill=%22%23ff8a2b%22/><text y=%22130%22 x=%2224%22 font-size=%22130%22 font-family=%22serif%22 font-weight=%22700%22 fill=%22%230a0a0c%22>D</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%23ff8a2b%22/><text y=%2224%22 x=%224%22 font-size=%2222%22 font-family=%22serif%22 font-weight=%22700%22 fill=%22%230a0a0c%22>D</text></svg>" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8W517WRW3N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8W517WRW3N');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg2: #111114;
+      --bg3: #17171b;
+      --bg4: #1c1c21;
+      --border: rgba(255, 255, 255, .09);
+      --border2: rgba(255, 255, 255, .15);
+      --border3: rgba(255, 255, 255, .22);
+      --text: #f2f1ec;
+      --text2: #8f8d86;
+      --text3: #4c4b47;
+      --accent: #ff8a2b;
+      --accent2: #ffa055;
+      --accent-bg: rgba(255, 138, 43, .14);
+      --accent-glow: rgba(255, 138, 43, .25);
+      --green: #5ee6c4;
+      --green-bg: rgba(94, 230, 196, .1);
+      --green-border: rgba(94, 230, 196, .28);
+      --amber: #ff8a2b;
+      --amber-bg: rgba(255, 138, 43, .1);
+      --red: #ff5d5d;
+      --font: 'Fraunces', serif;
+      --mono: 'JetBrains Mono', monospace;
+      --r: 10px;
+      --r2: 14px;
+      --r3: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 180px;
+    }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 0
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(8, 8, 16, .88);
+      backdrop-filter: blur(14px);
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      font-family: var(--font);
+      color: #0a0a0c;
+      flex-shrink: 0;
+    }
+
+    .logo-name {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -.02em
+    }
+
+    .logo-sep {
+      width: 1px;
+      height: 16px;
+      background: var(--border2);
+      margin: 0 4px
+    }
+
+    .logo-sub {
+      font-size: 13px;
+      color: var(--text2)
+    }
+
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .badge-live {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--green);
+    }
+
+    .badge-live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .5;
+        transform: scale(1.5)
+      }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 2.5rem 0 2rem
+    }
+
+    .hero h1 {
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 600;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: .6rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent2)
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--text2);
+      max-width: 480px;
+      line-height: 1.65
+    }
+
+    /* ── CLIENT INPUT ── */
+    .client-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .client-row label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      display: block;
+      margin-bottom: 5px
+    }
+
+    .client-row input {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--r);
+      padding: 9px 13px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      min-width: 220px;
+      flex: 1;
+      transition: border-color .15s;
+    }
+
+    .client-row input:focus {
+      border-color: var(--accent)
+    }
+
+    .client-row input::placeholder {
+      color: var(--text3)
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 5px;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 11px;
+      border-radius: var(--r);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text3);
+      font-family: var(--font);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .17s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .tab-btn svg {
+      flex-shrink: 0
+    }
+
+    .tab-btn.active {
+      background: var(--bg4);
+      border-color: var(--border2);
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tab-btn .tab-count {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: var(--accent-bg);
+      color: var(--accent2);
+    }
+
+    .tab-btn.active .tab-count {
+      background: var(--accent);
+      color: #fff
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--accent2);
+      margin-bottom: .875rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    /* ── PLAN CARDS ── */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: 1.35rem;
+      cursor: pointer;
+      transition: border-color .17s, transform .17s, background .17s;
+      position: relative;
+    }
+
+    .plan-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-1px)
+    }
+
+    .plan-card.selected {
+      border: 2px solid var(--accent);
+      background: var(--bg3);
+      transform: translateY(-2px);
+    }
+
+    .plan-card.featured {
+      border-color: rgba(129, 140, 248, .35)
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 3px 13px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .plan-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px
+    }
+
+    .plan-name {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text2)
+    }
+
+    .plan-card.selected .plan-name {
+      color: var(--accent2)
+    }
+
+    .plan-radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border2);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .15s;
+    }
+
+    .plan-card.selected .plan-radio {
+      background: var(--accent);
+      border-color: var(--accent)
+    }
+
+    .plan-price {
+      font-family: var(--mono);
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: -.03em;
+      margin: 8px 0 3px;
+    }
+
+    .plan-maint {
+      font-size: 11px;
+      color: var(--text2);
+      margin: 6px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .plan-maint b {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-weight: 600;
+    }
+
+    .plan-cuotas {
+      font-size: 11px;
+      color: var(--green);
+      background: var(--green-bg);
+      border: 1px solid var(--green-border);
+      border-radius: 5px;
+      padding: 2px 8px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .plan-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 12px
+    }
+
+    .plan-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .plan-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.4;
+    }
+
+    .plan-card.selected .plan-features li {
+      color: var(--text)
+    }
+
+    .feat-check {
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 1px
+    }
+
+    /* ── PC SERVICES ── */
+    .service-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      transition: border-color .15s;
+    }
+
+    .service-section:hover {
+      border-color: var(--border2)
+    }
+
+    .cat-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .svc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all .15s;
+    }
+
+    .svc-item:hover {
+      background: rgba(255, 255, 255, .03)
+    }
+
+    .svc-item.checked {
+      background: var(--accent-bg);
+      border-color: rgba(255, 138, 43, .35)
+    }
+
+    .svc-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0
+    }
+
+    .svc-checkbox {
+      width: 17px;
+      height: 17px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border2);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all .15s;
+    }
+
+    .svc-item.checked .svc-checkbox {
+      background: var(--accent);
+      border-color: var(--accent)
+    }
+
+    .svc-name {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.35;
+      transition: color .15s
+    }
+
+    .svc-item.checked .svc-name {
+      color: var(--text)
+    }
+
+    .svc-price {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text3);
+      white-space: nowrap;
+      transition: color .15s;
+    }
+
+    .svc-item.checked .svc-price {
+      color: var(--accent2)
+    }
+
+    /* ── CUSTOM ITEMS ── */
+    .custom-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      padding: 1.25rem;
+      margin-top: .5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .custom-add-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: .85rem;
+    }
+
+    .custom-add-row input {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--r);
+      padding: 9px 13px;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .custom-add-row input:focus {
+      border-color: var(--accent)
+    }
+
+    .custom-add-row input::placeholder {
+      color: var(--text3)
+    }
+
+    .custom-add-row input[type="text"] {
+      flex: 2;
+      min-width: 180px
+    }
+
+    .custom-add-row input[type="number"] {
+      flex: 1;
+      min-width: 130px
+    }
+
+    .custom-add-row .btn {
+      flex-shrink: 0
+    }
+
+    .custom-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px
+    }
+
+    .custom-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: var(--accent-bg);
+      border: 1px solid rgba(255, 138, 43, .35);
+    }
+
+    .custom-item-name {
+      font-size: 13px;
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .custom-item-price {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent2);
+      white-space: nowrap;
+    }
+
+    .custom-remove {
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      flex-shrink: 0;
+      transition: color .15s, background .15s;
+    }
+
+    .custom-remove:hover {
+      color: var(--red);
+      background: rgba(239, 68, 68, .12)
+    }
+
+    .custom-empty {
+      font-size: 12px;
+      color: var(--text3);
+      text-align: center;
+      padding: 6px 0
+    }
+
+    /* ── FOOTER BAR ── */
+    .footer-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(8, 8, 16, .95);
+      border-top: 1px solid var(--border2);
+      backdrop-filter: blur(20px);
+      z-index: 60;
+    }
+
+    .footer-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: .875rem 1.25rem
+    }
+
+    .footer-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      margin-bottom: .75rem;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text2);
+      gap: 8px;
+    }
+
+    .footer-line span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 75%;
+    }
+
+    .footer-line .fl-price {
+      font-family: var(--mono);
+      flex-shrink: 0
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap
+    }
+
+    .total-block {}
+
+    .total-label {
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text3);
+      margin-bottom: 2px
+    }
+
+    .total-amount {
+      font-family: var(--mono);
+      font-size: 1.75rem;
+      font-weight: 500;
+      letter-spacing: -.04em
+    }
+
+    .total-amount.has-value {
+      color: var(--text)
+    }
+
+    .total-amount.empty {
+      color: var(--text3)
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 20px;
+      border-radius: var(--r);
+      border: 1px solid;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .17s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      opacity: .85;
+      transform: translateY(-1px)
+    }
+
+    .btn-primary:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+      transform: none
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border2);
+      color: var(--text2)
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border3);
+      color: var(--text);
+      background: rgba(255, 255, 255, .03)
+    }
+
+    .btn-wa {
+      background: rgba(37, 211, 102, .1);
+      border-color: rgba(37, 211, 102, .3);
+      color: #25d366
+    }
+
+    .btn-wa:hover {
+      background: rgba(37, 211, 102, .18)
+    }
+
+    .btn-success {
+      background: var(--green-bg);
+      border-color: var(--green-border);
+      color: var(--green)
+    }
+
+    .btn-loading {
+      opacity: .7;
+      pointer-events: none
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-hint {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text3);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .empty-hint strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text2);
+      margin-bottom: 6px
+    }
+
+    /* ── CLEAR BTN ── */
+    .clear-btn {
+      font-size: 11px;
+      color: var(--text3);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: var(--font);
+      transition: color .15s;
+    }
+
+    .clear-btn:hover {
+      color: var(--red)
+    }
+
+    /* ── SCROLL ── */
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 2px
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .anim {
+      animation: fadeIn .3s ease both
+    }
+
+    .anim-d1 {
+      animation-delay: .05s
+    }
+
+    .anim-d2 {
+      animation-delay: .1s
+    }
+
+    .anim-d3 {
+      animation-delay: .15s
+    }
+
+    @media(max-width:600px) {
+      .plans-grid {
+        grid-template-columns: 1fr
+      }
+
+      .total-amount {
+        font-size: 1.4rem
+      }
+
+      .site-header .logo-sub,
+      .site-header .logo-sep,
+      .badge-live {
+        display: none
+      }
+
+      .custom-add-row input[type="text"],
+      .custom-add-row input[type="number"] {
+        flex: 1 1 100%
+      }
+
+      .custom-add-row .btn {
+        flex: 1 1 100%;
+        justify-content: center
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="index-redesign.html" style="display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none">
+      <div class="logo-mark">D</div>
+      <span class="logo-name">DMR Web Design</span>
+      <div class="logo-sep"></div>
+      <span class="logo-sub">& IT</span>
+    </a>
+    <div class="header-right">
+      <div class="badge-live">
+        <span class="badge-live-dot"></span>
+        Precios actualizados
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="wrap">
+
+    <!-- HERO -->
+    <div class="hero anim">
+      <h1>Calculadora de<br /><span>presupuesto</span></h1>
+      <p>Seleccioná los servicios que necesitás, agregá items personalizados si hace falta, y descargá un presupuesto
+        formal en PDF al instante.</p>
+    </div>
+
+    <!-- CLIENT -->
+    <div class="client-row anim anim-d1">
+      <div style="flex:1;min-width:200px">
+        <label for="clientName">Nombre del cliente</label>
+        <input type="text" id="clientName" placeholder="Ej: María García" autocomplete="off" />
+      </div>
+      <div style="flex:1;min-width:200px">
+        <label for="clientEmail">Email (opcional)</label>
+        <input type="email" id="clientEmail" placeholder="cliente@email.com" autocomplete="off" />
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs anim anim-d2">
+      <button class="tab-btn active" id="tab-web" onclick="switchTab('web')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+        Desarrollo web
+        <span class="tab-count" id="web-count">—</span>
+      </button>
+      <button class="tab-btn" id="tab-pc" onclick="switchTab('pc')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <polyline points="8 21 12 17 16 21" />
+        </svg>
+        Servicio técnico PC
+        <span class="tab-count" id="pc-count">0</span>
+      </button>
+    </div>
+
+    <!-- PANEL WEB -->
+    <div id="panel-web" class="anim anim-d3">
+      <div class="section-label">Elegí un plan — solo uno</div>
+      <div class="plans-grid" id="plans-grid"></div>
+    </div>
+
+    <!-- PANEL PC -->
+    <div id="panel-pc" style="display:none">
+      <div id="pc-services"></div>
+    </div>
+
+    <!-- CUSTOM ITEMS (siempre visible, aplica a cualquier presupuesto) -->
+    <div class="custom-section anim">
+      <div class="section-label">
+        Items personalizados
+        <span class="tab-count" id="custom-count">0</span>
+      </div>
+      <div class="custom-add-row">
+        <input type="text" id="customName" placeholder="Descripción del item (ej: Hosting anual)" autocomplete="off" />
+        <input type="number" id="customPrice" placeholder="Precio ARS" min="0" step="1000" />
+        <button class="btn btn-secondary" onclick="addCustomItem()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Agregar
+        </button>
+      </div>
+      <div class="custom-list" id="custom-list"></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER STICKY -->
+  <div class="footer-bar">
+    <div class="footer-inner">
+      <div class="footer-lines" id="footer-lines" style="display:none"></div>
+      <div class="footer-bottom">
+        <div class="total-block">
+          <div class="total-label">Total en ARS</div>
+          <div class="total-amount empty" id="grand-total">$ 0</div>
+        </div>
+        <div class="footer-actions">
+          <button class="btn btn-secondary" onclick="clearAll()" id="clear-btn" style="display:none">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+            Limpiar
+          </button>
+          <a id="wa-btn" class="btn btn-wa" href="#" target="_blank" rel="noopener" style="display:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            WhatsApp
+          </a>
+          <button class="btn btn-primary" id="pdf-btn" onclick="exportPDF()" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="12" y1="18" x2="12" y2="12" />
+              <line x1="9" y1="15" x2="15" y2="15" />
+            </svg>
+            <span id="pdf-label">Exportar PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ════════════════════════════════════════════════
+    // DATA
+    // ════════════════════════════════════════════════
+    const PLANS = [
+      {
+        id: 'basico', name: 'Plan Básico', price: 100000, maint: 30000, cuotas: 2, badge: null,
+        features: ['Landing One Page (hasta 4 secciones)', 'Diseño 100% Responsive', 'Formulario de contacto', 'SEO básico (meta tags)', 'Deploy en Netlify incluido', '2 rondas de revisiones']
+      },
+      {
+        id: 'pro', name: 'Plan Pro', price: 170000, maint: 40000, cuotas: 2, badge: 'Más elegido',
+        features: ['Landing de hasta 6 secciones', 'Integración WhatsApp + CTA flotante', 'SEO On-Page completo', 'Animaciones y microinteracciones', 'Google Analytics configurado', 'Dominio .com.ar (1 año)', '3 rondas de revisiones']
+      },
+      {
+        id: 'premium', name: 'Plan Premium', price: 230000, maint: 50000, cuotas: 3, badge: null,
+        features: ['Diseño UI personalizado desde cero', 'Hasta 8 secciones + blog simple', 'Performance 90+ en PageSpeed', 'Open Graph para redes sociales', 'Soporte 30 días post-entrega']
+      },
+    ];
+
+    const PC_CATS = [
+      {
+        cat: 'Software & Sistema Operativo', icon: '💾', color: 'rgba(255,138,43,.14)', items: [
+          { id: 'diag', name: 'Diagnóstico / revisión', price: 16500 },
+          { id: 'fmt', name: 'Formateo e instalación de SO (sin BackUp)', price: 49700 },
+          { id: 'fmtFull', name: 'Formateo + Programas + BackUp 100gb + cambio a SSD', price: 77300 },
+          { id: 'backup', name: 'BackUp de datos (cada 100gb adicionales)', price: 11000 },
+          { id: 'init', name: 'Inicialización de equipo nuevo (config + programas)', price: 33000 },
+          { id: 'opensrc', name: 'Instalación de programa OpenSource x1', price: 22000 },
+          { id: 'comerc', name: 'Instalación programa comercial x1 (provisto)', price: 22000 },
+          { id: 'drivers', name: 'Instalación y configuración de drivers', price: 29000 },
+          { id: 'virus', name: 'Eliminación de malware / virus', price: 29000 },
+          { id: 'winfix', name: 'Reparación inicio de Windows / restablecimiento sesión', price: 43800 },
+          { id: 'remoto', name: 'Conexión remota x1 hora — problemas generales', price: 16500 },
+        ]
+      },
+      {
+        cat: 'Hardware & Componentes', icon: '🔩', color: 'rgba(94,230,196,.12)', items: [
+          { id: 'pcbasic', name: 'Armado de PC básica desde cero', price: 55200 },
+          { id: 'pcgamer', name: 'Armado de PC gamer desde cero', price: 89400 },
+          { id: 'comp1', name: 'Cambio de componente hardware x1 (RAM, GPU, disco…)', price: 24300 },
+          { id: 'clone1', name: 'Clonado de disco sin errores SMART', price: 43800 },
+          { id: 'clone2', name: 'Clonado de disco con errores SMART', price: 60800 },
+          { id: 'rebal', name: 'Reballing hardware / motherboard', price: 114900 },
+        ]
+      },
+      {
+        cat: 'Visitas a Domicilio', icon: '🏠', color: 'rgba(94,230,196,.18)', items: [
+          { id: 'visit1', name: 'Visita a domicilio x 1 hora', price: 24300 },
+          { id: 'visit2', name: 'Visita emergencia — fuera de horario', price: 36500 },
+          { id: 'router', name: 'Configuración Router / Access Point in site', price: 43800 },
+        ]
+      },
+      {
+        cat: 'Dispositivos móviles', icon: '📱', color: 'rgba(255,160,85,.16)', items: [
+          { id: 'hreset', name: 'Hard Reset + configuración (celular / tablet / iPad)', price: 34000 },
+        ]
+      },
+    ];
+
+    // ════════════════════════════════════════════════
+    // STATE
+    // ════════════════════════════════════════════════
+    let selectedPlan = null;
+    let checkedSvc = {};
+    let currentTab = 'web';
+    let customItems = [];
+    let customIdCounter = 1;
+
+    const fmt = n => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(n);
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // ════════════════════════════════════════════════
+    // RENDER PLANS
+    // ════════════════════════════════════════════════
+    function renderPlans() {
+      const g = document.getElementById('plans-grid');
+      g.innerHTML = PLANS.map(p => {
+        const sel = selectedPlan === p.id;
+        const radioCheck = sel
+          ? `<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`
+          : '';
+        const feats = p.features.map(f =>
+          `<li><span class="feat-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>${f}</li>`
+        ).join('');
+        return `
+    <div class="plan-card${sel ? ' selected' : ''}${p.badge ? ' featured' : ''}" onclick="selectPlan('${p.id}')">
+      ${p.badge ? `<div class="plan-badge">${p.badge}</div>` : ''}
+      <div class="plan-header">
+        <span class="plan-name">${p.name}</span>
+        <div class="plan-radio">${radioCheck}</div>
+      </div>
+      <div class="plan-price">${fmt(p.price)}</div>
+      <div class="plan-cuotas">${p.cuotas} cuotas de ${fmt(p.price / p.cuotas)}</div>
+      <div class="plan-maint">🔄 Mantenimiento: <b>${fmt(p.maint)}/mes</b></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">${feats}</ul>
+    </div>`;
+      }).join('');
+
+      const plan = PLANS.find(p => p.id === selectedPlan);
+      document.getElementById('web-count').textContent = plan ? fmt(plan.price) : '—';
+    }
+
+    // ════════════════════════════════════════════════
+    // RENDER PC SERVICES
+    // ════════════════════════════════════════════════
+    function renderPC() {
+      const container = document.getElementById('pc-services');
+      container.innerHTML = PC_CATS.map(cat => {
+        const items = cat.items.map(item => {
+          const on = !!checkedSvc[item.id];
+          const checkMark = on
+            ? `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`
+            : '';
+          return `
+      <div class="svc-item${on ? ' checked' : ''}" onclick="toggleSvc('${item.id}',${item.price})">
+        <div class="svc-left">
+          <div class="svc-checkbox">${checkMark}</div>
+          <span class="svc-name">${item.name}</span>
+        </div>
+        <span class="svc-price">${fmt(item.price)}</span>
+      </div>`;
+        }).join('');
+
+        return `
+    <div class="service-section">
+      <div class="cat-title">
+        <div class="cat-icon" style="background:${cat.color}">${cat.icon}</div>
+        ${cat.cat}
+      </div>
+      ${items}
+    </div>`;
+      }).join('');
+
+      const pcTotal = Object.values(checkedSvc).reduce((a, v) => a + (v || 0), 0);
+      const count = Object.values(checkedSvc).filter(Boolean).length;
+      document.getElementById('pc-count').textContent = count > 0 ? `${count} · ${fmt(pcTotal)}` : '0';
+    }
+
+    // ════════════════════════════════════════════════
+    // RENDER CUSTOM ITEMS
+    // ════════════════════════════════════════════════
+    function renderCustom() {
+      const list = document.getElementById('custom-list');
+
+      if (customItems.length === 0) {
+        list.innerHTML = '<div class="custom-empty">Sin items personalizados agregados todavía</div>';
+      } else {
+        list.innerHTML = customItems.map(i => `
+      <div class="custom-item">
+        <span class="custom-item-name" title="${escapeHtml(i.name)}">${escapeHtml(i.name)}</span>
+        <span class="custom-item-price">${fmt(i.price)}</span>
+        <button class="custom-remove" onclick="removeCustomItem(${i.id})" title="Eliminar item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>`).join('');
+      }
+
+      const customTotal = customItems.reduce((a, i) => a + i.price, 0);
+      document.getElementById('custom-count').textContent =
+        customItems.length > 0 ? `${customItems.length} · ${fmt(customTotal)}` : '0';
+    }
+
+    function addCustomItem() {
+      const nameInput = document.getElementById('customName');
+      const priceInput = document.getElementById('customPrice');
+      const name = nameInput.value.trim();
+      const price = parseFloat(priceInput.value);
+
+      if (!name) {
+        nameInput.focus();
+        nameInput.style.borderColor = 'var(--red)';
+        setTimeout(() => { nameInput.style.borderColor = ''; }, 1400);
+        return;
+      }
+      if (isNaN(price) || price <= 0) {
+        priceInput.focus();
+        priceInput.style.borderColor = 'var(--red)';
+        setTimeout(() => { priceInput.style.borderColor = ''; }, 1400);
+        return;
+      }
+
+      customItems.push({ id: customIdCounter++, name, price });
+      nameInput.value = '';
+      priceInput.value = '';
+      nameInput.focus();
+
+      renderCustom();
+      updateFooter();
+    }
+
+    function removeCustomItem(id) {
+      customItems = customItems.filter(i => i.id !== id);
+      renderCustom();
+      updateFooter();
+    }
+
+    // ════════════════════════════════════════════════
+    // INTERACTIONS
+    // ════════════════════════════════════════════════
+    function selectPlan(id) {
+      selectedPlan = selectedPlan === id ? null : id;
+      renderPlans();
+      updateFooter();
+    }
+
+    function toggleSvc(id, price) {
+      checkedSvc[id] = checkedSvc[id] ? 0 : price;
+      renderPC();
+      updateFooter();
+    }
+
+    function switchTab(t) {
+      currentTab = t;
+      document.getElementById('panel-web').style.display = t === 'web' ? 'block' : 'none';
+      document.getElementById('panel-pc').style.display = t === 'pc' ? 'block' : 'none';
+      document.getElementById('tab-web').classList.toggle('active', t === 'web');
+      document.getElementById('tab-pc').classList.toggle('active', t === 'pc');
+    }
+
+    function clearAll() {
+      selectedPlan = null;
+      checkedSvc = {};
+      customItems = [];
+      renderPlans();
+      renderPC();
+      renderCustom();
+      updateFooter();
+    }
+
+    // ════════════════════════════════════════════════
+    // FOOTER UPDATE
+    // ════════════════════════════════════════════════
+    function updateFooter() {
+      const plan = PLANS.find(p => p.id === selectedPlan);
+      const webTotal = plan ? plan.price : 0;
+      const pcItems = PC_CATS.flatMap(c => c.items.filter(i => checkedSvc[i.id]));
+      const pcTotal = pcItems.reduce((a, i) => a + i.price, 0);
+      const customTotal = customItems.reduce((a, i) => a + i.price, 0);
+      const grand = webTotal + pcTotal + customTotal;
+      const hasAny = grand > 0;
+
+      // Total
+      const totalEl = document.getElementById('grand-total');
+      totalEl.textContent = fmt(grand);
+      totalEl.className = 'total-amount ' + (hasAny ? 'has-value' : 'empty');
+
+      // Line items
+      const linesEl = document.getElementById('footer-lines');
+      const lines = [];
+      if (plan) lines.push({ label: `Web — ${plan.name} (+ ${fmt(plan.maint)}/mes mant.)`, price: plan.price, badge: plan.badge });
+      pcItems.forEach(i => lines.push({ label: `PC — ${i.name}`, price: i.price }));
+      customItems.forEach(i => lines.push({ label: `Personalizado — ${i.name}`, price: i.price }));
+
+      if (lines.length > 0) {
+        linesEl.style.display = 'flex';
+        linesEl.innerHTML = lines.map(l =>
+          `<div class="footer-line">
+        <span>${l.label}${l.badge ? ` <span style="font-size:10px;color:var(--accent2)">[${l.badge}]</span>` : ''}</span>
+        <span class="fl-price">${fmt(l.price)}</span>
+      </div>`
+        ).join('');
+      } else {
+        linesEl.style.display = 'none';
+        linesEl.innerHTML = '';
+      }
+
+      // Buttons
+      const pdfBtn = document.getElementById('pdf-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const waBtn = document.getElementById('wa-btn');
+
+      pdfBtn.disabled = !hasAny;
+      clearBtn.style.display = hasAny ? 'inline-flex' : 'none';
+      waBtn.style.display = hasAny ? 'inline-flex' : 'none';
+
+      // WhatsApp link
+      if (hasAny) {
+        const name = document.getElementById('clientName').value.trim();
+        let msg = `Hola Diego! Vengo desde tu calculadora de presupuesto.\n`;
+        if (name) msg += `Cliente: ${name}\n`;
+        msg += `\n`;
+        if (plan) msg += `• Web — ${plan.name}: ${fmt(plan.price)} (+ ${fmt(plan.maint)}/mes de mantenimiento)\n`;
+        pcItems.forEach(i => msg += `• PC — ${i.name}: ${fmt(i.price)}\n`);
+        customItems.forEach(i => msg += `• ${i.name}: ${fmt(i.price)}\n`);
+        msg += `\nTOTAL: ${fmt(grand)}`;
+        waBtn.href = `https://wa.me/5492615892555?text=${encodeURIComponent(msg)}`;
+      }
+    }
+
+    // ════════════════════════════════════════════════
+    // PDF EXPORT
+    // ════════════════════════════════════════════════
+    async function exportPDF() {
+      if (typeof window.jspdf === 'undefined') {
+        alert('La librería de PDF aún está cargando. Intentá en un momento.');
+        return;
+      }
+
+      const btn = document.getElementById('pdf-btn');
+      const label = document.getElementById('pdf-label');
+      btn.classList.add('btn-loading');
+      label.textContent = 'Generando…';
+      await new Promise(r => setTimeout(r, 300));
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const W = 210, pad = 18, col2 = W - pad;
+
+      const plan = PLANS.find(p => p.id === selectedPlan);
+      const pcItems = PC_CATS.flatMap(c => c.items.filter(i => checkedSvc[i.id]));
+      const webTot = plan ? plan.price : 0;
+      const pcTot = pcItems.reduce((a, i) => a + i.price, 0);
+      const customTot = customItems.reduce((a, i) => a + i.price, 0);
+      const grand = webTot + pcTot + customTot;
+
+      const clientName = document.getElementById('clientName').value.trim();
+      const clientEmail = document.getElementById('clientEmail').value.trim();
+
+      const C = {
+        bg: [10, 10, 12],
+        accent: [255, 138, 43],
+        text: [242, 241, 236],
+        muted: [143, 141, 134],
+        dim: [76, 75, 71],
+        white: [255, 255, 255],
+        green: [94, 230, 196],
+        light: [247, 245, 240],
+        border: [40, 40, 45],
+      };
+
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('es-AR', { day: '2-digit', month: 'long', year: 'numeric' });
+      const fname = `presupuesto-dmr-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}.pdf`;
+
+      let y = 0;
+
+      // ── HEADER BAND ──
+      doc.setFillColor(...C.bg);
+      doc.rect(0, 0, W, 52, 'F');
+
+      // Logo mark
+      doc.setFillColor(...C.accent);
+      doc.roundedRect(pad, 10, 24, 24, 4, 4, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(16);
+      doc.setTextColor(...C.white);
+      doc.text('D', pad + 12, 25, { align: 'center' });
+
+      // Company name
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(17);
+      doc.setTextColor(...C.white);
+      doc.text('DMR Web Design & IT', pad + 30, 19);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(...C.muted);
+      doc.text('diegomr949@gmail.com  ·  +54 9 261 589-2555', pad + 30, 26);
+      doc.text('dmrwebdesign.com.ar  ·  Mendoza, Argentina', pad + 30, 32);
+
+      // Accent line
+      doc.setFillColor(...C.accent);
+      doc.rect(0, 52, W, 2, 'F');
+
+      y = 68;
+
+      // ── DOCUMENT TITLE ──
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(20);
+      doc.setTextColor(...C.bg);
+      doc.text('Presupuesto', pad, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(...C.muted);
+      doc.text(`Fecha: ${dateStr}`, col2, y, { align: 'right' });
+
+      y += 5;
+      // Separator
+      doc.setDrawColor(...C.dim);
+      doc.setLineWidth(0.4);
+      doc.line(pad, y, col2, y);
+      y += 8;
+
+      // ── CLIENT INFO ──
+      if (clientName || clientEmail) {
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...C.muted);
+        doc.text('CLIENTE', pad, y);
+        y += 5;
+        if (clientName) {
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(11);
+          doc.setTextColor(...C.bg);
+          doc.text(clientName, pad, y);
+          y += 5;
+        }
+        if (clientEmail) {
+          doc.setFont('helvetica', 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(...C.muted);
+          doc.text(clientEmail, pad, y);
+          y += 5;
+        }
+        y += 6;
+      }
+
+      // ── SECTION HELPER ──
+      const drawSection = (title, rows, subtotal) => {
+        // Page break check
+        if (y > 250) {
+          doc.addPage();
+          y = 20;
+        }
+
+        // Section header
+        doc.setFillColor(235, 236, 255);
+        doc.roundedRect(pad, y - 4, col2 - pad, 9, 2, 2, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...C.accent);
+        doc.text(title.toUpperCase(), pad + 4, y + 2);
+        y += 12;
+
+        rows.forEach(({ label, price, note, indent }) => {
+          if (y > 265) {
+            doc.addPage();
+            y = 20;
+          }
+
+          doc.setFont('helvetica', indent ? 'normal' : 'normal');
+          doc.setFontSize(9);
+          doc.setTextColor(...C.bg);
+          const lx = indent ? pad + 6 : pad + 4;
+          const maxW = col2 - lx - 30;
+          const wrapped = doc.splitTextToSize(label, maxW);
+          wrapped.forEach((line, idx) => {
+            doc.text(line, lx, y + idx * 5);
+          });
+          if (note) {
+            doc.setFont('helvetica', 'italic');
+            doc.setFontSize(7.5);
+            doc.setTextColor(...C.muted);
+            doc.text(note, lx, y + wrapped.length * 5);
+            y += 4;
+          }
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(9);
+          doc.setTextColor(...C.bg);
+          doc.text(fmt(price), col2, y, { align: 'right' });
+          y += wrapped.length * 5 + 2;
+
+          // light separator
+          doc.setDrawColor(220, 220, 235);
+          doc.setLineWidth(0.25);
+          doc.line(pad + 4, y, col2, y);
+          y += 3;
+        });
+
+        // Subtotal row
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(9);
+        doc.setTextColor(...C.accent);
+        doc.text('Subtotal', pad + 4, y);
+        doc.text(fmt(subtotal), col2, y, { align: 'right' });
+        y += 10;
+      };
+
+      // ── WEB SECTION ──
+      if (plan) {
+        drawSection('Desarrollo Web', [
+          {
+            label: plan.name + (plan.badge ? `  [${plan.badge}]` : ''),
+            price: plan.price,
+            note: `Incluye: ${plan.features.join(' · ')}`
+          }
+        ], webTot);
+      }
+
+      // ── PC SECTION ──
+      if (pcItems.length > 0) {
+        const rows = pcItems.map(i => ({ label: i.name, price: i.price }));
+        drawSection('Servicio Técnico PC', rows, pcTot);
+      }
+
+      // ── CUSTOM SECTION ──
+      if (customItems.length > 0) {
+        const rows = customItems.map(i => ({ label: i.name, price: i.price }));
+        drawSection('Items Personalizados', rows, customTot);
+      }
+
+      // ── GRAND TOTAL ──
+      if (y > 260) {
+        doc.addPage();
+        y = 20;
+      }
+      y += 4;
+      doc.setFillColor(...C.accent);
+      doc.roundedRect(pad, y - 5, col2 - pad, 16, 3, 3, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.setTextColor(...C.white);
+      doc.text('TOTAL GENERAL', pad + 6, y + 5);
+      doc.setFontSize(13);
+      doc.text(fmt(grand), col2 - 2, y + 5, { align: 'right' });
+      y += 24;
+
+      // ── PAYMENT NOTE ──
+      if (plan) {
+        if (y > 270) { doc.addPage(); y = 20; }
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8.5);
+        doc.setTextColor(...C.muted);
+        doc.text(
+          `Modalidad de pago web: ${plan.cuotas} cuotas de ${fmt(plan.price / plan.cuotas)} c/u`,
+          pad, y
+        );
+        y += 6;
+      }
+
+      // ── TERMS ──
+      if (y > 260) { doc.addPage(); y = 20; }
+      y += 2;
+      doc.setDrawColor(...C.dim);
+      doc.setLineWidth(0.3);
+      doc.line(pad, y, col2, y);
+      y += 6;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...C.muted);
+      doc.text('• Los precios son orientativos y pueden variar según diagnóstico técnico final.', pad, y); y += 4.5;
+      doc.text('• Validez del presupuesto: 15 días corridos desde la fecha de emisión.', pad, y); y += 4.5;
+      doc.text('• Para diseño web: 50% al iniciar el proyecto · 50% a la entrega.', pad, y); y += 4.5;
+      doc.text('• Para servicio técnico: pago al finalizar el trabajo.', pad, y);
+
+      // ── FOOTER BAND ──
+      const fY = 282;
+      doc.setFillColor(...C.bg);
+      doc.rect(0, fY, W, 15, 'F');
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...C.muted);
+      doc.text('DMR Web Design & IT  ·  Mendoza, Argentina', W / 2, fY + 5, { align: 'center' });
+      doc.text('diegomr949@gmail.com  ·  +54 9 261 589-2555  ·  dmrwebdesign.com.ar', W / 2, fY + 10, { align: 'center' });
+
+      doc.save(fname);
+
+      btn.classList.remove('btn-loading');
+      btn.classList.add('btn-success');
+      btn.querySelector('svg').outerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+      label.textContent = '¡PDF guardado!';
+      setTimeout(() => {
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-primary');
+        label.textContent = 'Exportar PDF';
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg><span id="pdf-label">Exportar PDF</span>`;
+      }, 3000);
+    }
+
+    // ════════════════════════════════════════════════
+    // INIT
+    // ════════════════════════════════════════════════
+    renderPlans();
+    renderPC();
+    renderCustom();
+    updateFooter();
+
+    // Recalculate footer if client name changes (for WA link)
+    document.getElementById('clientName').addEventListener('input', updateFooter);
+
+    // Enter key adds custom item from either input
+    document.getElementById('customName').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addCustomItem(); }
+    });
+    document.getElementById('customPrice').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addCustomItem(); }
+    });
+  </script>
+
+</body>
+
+</html>
